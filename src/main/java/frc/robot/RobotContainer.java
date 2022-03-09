@@ -77,7 +77,7 @@ public class RobotContainer {
    
     //Joystick Functions
     lBottom.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
-    rTrigger.whenHeld(new Shoot());
+    //rTrigger.whenHeld(new Shoot());
     lInside.whenPressed(new ArmIn());
     rInside.whenPressed(new ArmOut());
 

@@ -10,20 +10,21 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  CANSparkMax ShooterMotor1 = Constants.ShootMotor1;
-  CANSparkMax ShooterMotor2 = Constants.ShootMotor2;
+  //CANSparkMax ShooterMotor1 = Constants.ShootMotor1;
+  //CANSparkMax ShooterMotor2 = Constants.ShootMotor2;
   
   
   /** Creates a new Shooter. */
   public Shooter() {
     
   }
-  public void ShooterOn(double output) {
-    ShooterMotor1.set(output);
-    ShooterMotor2.set(output * -1);
-  }
-  @Override
-  public void periodic() {
+  //public void ShooterOn(double output) {
+    //ShooterMotor1.set(output);
+   // ShooterMotor2.set(output * -1); 
+ // }
+ @Override
+ public void periodic() {
     // This method will be called once per scheduler run
-  }
+ }
+  
 }

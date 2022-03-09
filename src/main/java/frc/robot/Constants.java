@@ -61,7 +61,7 @@ public final class Constants {
     public static int GamepadL3 = 12;
 
 
-    public static int SHOOTER_MOTOR_1 = 26;
+    /*public static int SHOOTER_MOTOR_1 = 26;
     public static int SHOOTER_MOTOR_2 = 30;
 
     
@@ -73,4 +73,5 @@ public final class Constants {
 
     //compressor
     public static Compressor cp;
+    */
 }
