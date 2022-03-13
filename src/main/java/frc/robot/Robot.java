@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.Indexer;
+import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
 
 /**
@@ -23,6 +25,8 @@ private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
   public static Shooter m_shooter = new Shooter();
   public static Climber climber = new Climber();
+  public static Indexer indexer = new Indexer();
+  public static Intake intake = new Intake();
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.

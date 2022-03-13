@@ -55,7 +55,6 @@ private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connect
   private final SwerveModule m_backRightModule;
 
   private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
-  private ChassisSpeeds m_autochassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.3);
 
   public DrivetrainSubsystem() {
     final ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
@@ -142,10 +141,6 @@ private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connect
   public void drive(final ChassisSpeeds chassisSpeeds) {
     m_chassisSpeeds = chassisSpeeds;
   }
-  public void autoDrive(final ChassisSpeeds chassisSpeeds) {
-        m_autochassisSpeeds = chassisSpeeds;
-      }
-
   @Override
   public void periodic() {
     final SwerveModuleState[] states = m_kinematics.toSwerveModuleStates(m_chassisSpeeds);

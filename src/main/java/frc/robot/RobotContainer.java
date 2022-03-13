@@ -77,9 +77,10 @@ public class RobotContainer {
    
     //Joystick Functions
     lBottom.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
-    //rTrigger.whenHeld(new Shoot());
+    rTrigger.whenHeld(new Shoot());
     lInside.whenPressed(new ArmIn());
     rInside.whenPressed(new ArmOut());
+    
 
     //Gamepad Functions
 
@@ -89,7 +90,7 @@ public class RobotContainer {
     return new InstantCommand();
   }
 
-  /*private static double deadband(double value, double deadband) {
+  private static double deadband(double value, double deadband) {
     if (Math.abs(value) > deadband) {
       if (value > 0.0) {
         return (value - deadband) / (1.0 - deadband);
@@ -100,10 +101,9 @@ public class RobotContainer {
       return 0.0;
     }
   }
-*/
   private static double modifyAxis(double value) {
     // Deadband
-    //value = deadband(value, 0.05);
+    value = deadband(value, 0.05);
 
     // Square the axis
     value = Math.copySign(value * value, value);

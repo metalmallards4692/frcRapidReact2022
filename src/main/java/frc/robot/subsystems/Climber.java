@@ -11,9 +11,12 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
   private DoubleSolenoid ClimbCylinders;
+  private DoubleSolenoid HookCylinders;
 
   public Climber() {
-    ClimbCylinders = new DoubleSolenoid(2,PneumaticsModuleType.REVPH, 4, 5);
+    ClimbCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 4, 5);
+    ClimbCylinders.set(Value.kOff);
+    HookCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 6, 7);
     ClimbCylinders.set(Value.kOff);
   }
 
@@ -23,6 +26,10 @@ public class Climber extends SubsystemBase {
   
   public void ArmIn() {
     ClimbCylinders.set(DoubleSolenoid.Value.kReverse);
+  }
+
+  public void HookToggle() {
+    HookCylinders.toggle();
   }
 
 

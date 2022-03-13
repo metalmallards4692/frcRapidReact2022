@@ -7,7 +7,7 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Compressor;
 
 public final class Constants {
-
+  //Drive Train Constants
     public static final double DRIVETRAIN_TRACKWIDTH_METERS = Units.inchesToMeters(23.5); 
     public static final double DRIVETRAIN_WHEELBASE_METERS = Units.inchesToMeters(23.5);
 
@@ -31,11 +31,11 @@ public final class Constants {
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 10; 
     public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(7.734375);
     
-    //Joystick
+  //Joystick
     public static final int rightJoystick = 0;
-	public static final int leftJoystick = 1;
+  	public static final int leftJoystick = 1;
    
-    //Joystick Buttons
+  //Joystick Buttons
     public static int JoystickTriggerR = 1;
     public static int JoystickTriggerL = 1;
     public static int JoystickLeftInside = 4;
@@ -45,8 +45,8 @@ public final class Constants {
     public static int JoystickRightBottom = 2;
     public static int JoystickLeftBottom = 2;
 
-    //Gamepad
-  public static int gamepad = 2;
+  //Gamepad
+    public static int gamepad = 2;
 
   //Gamepad Buttons
     public static int GamepadA = 2;
@@ -60,18 +60,25 @@ public final class Constants {
     public static int GamepadR3 = 11;
     public static int GamepadL3 = 12;
 
-
-    /*public static int SHOOTER_MOTOR_1 = 26;
-    public static int SHOOTER_MOTOR_2 = 30;
-
-    
-    //Creating Motors
+  //shooter motor ids
+    public static int SHOOTER_MOTOR_1 = 34;
+    public static int SHOOTER_MOTOR_2 = 37;
+  //Creating Motors
     public static CANSparkMax ShootMotor1 = new CANSparkMax(Constants.SHOOTER_MOTOR_1, MotorType.kBrushless);
     public static CANSparkMax ShootMotor2 = new CANSparkMax(Constants.SHOOTER_MOTOR_2, MotorType.kBrushless);
 
+  //Indexer Motors
+    public static int BOTTOM_INDEX = 30;
+    public static int TOP_INDEX = 31;
+  //Create Index Motors
+    public static CANSparkMax BottomIndex = new CANSparkMax(Constants.BOTTOM_INDEX, MotorType.kBrushless);
+    public static CANSparkMax TopIndex = new CANSparkMax(Constants.TOP_INDEX, MotorType.kBrushless);
+  //intake Motor
+    public static int INTAKE_MOTOR = 36;
+  //Create Intake Motor
+    public static CANSparkMax IntakeMotor = new CANSparkMax(Constants.INTAKE_MOTOR, MotorType.kBrushless);
 
-
-    //compressor
+  //compressor
     public static Compressor cp;
-    */
+    
 }

@@ -6,22 +6,30 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-  //CANSparkMax ShooterMotor1 = Constants.ShootMotor1;
-  //CANSparkMax ShooterMotor2 = Constants.ShootMotor2;
+  CANSparkMax ShooterMotor1 = Constants.ShootMotor1;
+  CANSparkMax ShooterMotor2 = Constants.ShootMotor2;
+  private DoubleSolenoid HoodCylinder;
   
   
   /** Creates a new Shooter. */
   public Shooter() {
-    
+    HoodCylinder = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 0, 1);
+    HoodCylinder.set(Value.kOff);
   }
-  //public void ShooterOn(double output) {
-    //ShooterMotor1.set(output);
-   // ShooterMotor2.set(output * -1); 
- // }
+  public void ShooterOn(double output) {
+    ShooterMotor1.set(output * -1);
+   ShooterMotor2.set(output * -1); 
+ }
+ public void HoodToggle() {
+  HoodCylinder.toggle();
+}
  @Override
  public void periodic() {
     // This method will be called once per scheduler run

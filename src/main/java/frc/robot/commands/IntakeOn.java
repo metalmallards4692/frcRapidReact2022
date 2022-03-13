@@ -7,11 +7,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class Shoot extends CommandBase {
-  /** Creates a new Shoot. */
-  public Shoot() {
+public class IntakeOn extends CommandBase {
+  /** Creates a new IntakeOn. */
+  public IntakeOn() {
+    addRequirements(Robot.intake);
     // Use addRequirements() here to declare subsystem dependencies.
-      addRequirements(Robot.m_shooter);
   }
 
   // Called when the command is initially scheduled.
@@ -21,15 +21,12 @@ public class Shoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-  Robot.m_shooter.ShooterOn(.5);
+    Robot.intake.IntakeOn(.3);
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
-    //shooter goes off
-   Robot.m_shooter.ShooterOn(0);
-  }
+  public void end(boolean interrupted) {}
 
   // Returns true when the command should end.
   @Override
