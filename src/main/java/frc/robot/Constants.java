@@ -46,7 +46,7 @@ public final class Constants {
     public static int JoystickLeftBottom = 2;
 
   //Gamepad
-    public static int gamepad = 2;
+    public static int gamepad = 3;
 
   //Gamepad Buttons
     public static int GamepadA = 2;
@@ -68,16 +68,21 @@ public final class Constants {
     public static CANSparkMax ShootMotor2 = new CANSparkMax(Constants.SHOOTER_MOTOR_2, MotorType.kBrushless);
 
   //Indexer Motors
-    public static int BOTTOM_INDEX = 30;
-    public static int TOP_INDEX = 31;
+    public static int RIGHT_BOTTOM_INDEX = 38;
+    public static int RIGHT_TOP_INDEX = 35;
+    public static int LEFT_BOTTOM_INDEX = 32;
+    public static int LEFT_TOP_INDEX = 33;
   //Create Index Motors
-    public static CANSparkMax BottomIndex = new CANSparkMax(Constants.BOTTOM_INDEX, MotorType.kBrushless);
-    public static CANSparkMax TopIndex = new CANSparkMax(Constants.TOP_INDEX, MotorType.kBrushless);
+    public static CANSparkMax RightBottomIndex = new CANSparkMax(Constants.RIGHT_BOTTOM_INDEX, MotorType.kBrushless);
+    public static CANSparkMax RightTopIndex = new CANSparkMax(Constants.RIGHT_TOP_INDEX, MotorType.kBrushless);
+    public static CANSparkMax LeftBottomIndex = new CANSparkMax(Constants.LEFT_BOTTOM_INDEX, MotorType.kBrushless);
+    public static CANSparkMax LeftTopIndex = new CANSparkMax(Constants.LEFT_TOP_INDEX, MotorType.kBrushless);
   //intake Motor
-    public static int INTAKE_MOTOR = 36;
+    public static int INTAKE_MOTOR = 30;
+    public static int TRANSFER_MOTOR = 36;
   //Create Intake Motor
     public static CANSparkMax IntakeMotor = new CANSparkMax(Constants.INTAKE_MOTOR, MotorType.kBrushless);
-
+    public static CANSparkMax TransferMotor = new CANSparkMax(Constants.TRANSFER_MOTOR, MotorType.kBrushless);
   //compressor
     public static Compressor cp;
     

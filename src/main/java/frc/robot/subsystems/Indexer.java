@@ -10,21 +10,27 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Indexer extends SubsystemBase {
-  CANSparkMax TopIndexer = Constants.TopIndex;
-  CANSparkMax BottomIndexer = Constants.BottomIndex;
+  CANSparkMax RightTopIndexer = Constants.RightTopIndex;
+  CANSparkMax RightBottomIndexer = Constants.RightBottomIndex;
+  CANSparkMax LeftTopIndexer = Constants.LeftTopIndex;
+  CANSparkMax LeftBottomIndexer = Constants.LeftBottomIndex;
   
   /** Creates a new Indexer. */
   public Indexer() {}
 
   public void IndexOn(Double output) {
-    TopIndexer.set(output);
-    BottomIndexer.set(output);
+    RightTopIndexer.set(output);
+    RightBottomIndexer.set(output);
+    LeftTopIndexer.set(output);
+    LeftBottomIndexer.set(output);
   }
   public void TopIndexOn(Double output) {
-    TopIndexer.set(output);
+    RightTopIndexer.set(output);
+    LeftTopIndexer.set(output);
   }
   public void BottomIndexOn(Double output) {
-    BottomIndexer.set(output);
+    RightBottomIndexer.set(output);
+    LeftBottomIndexer.set(output);
   }
   @Override
   public void periodic() {

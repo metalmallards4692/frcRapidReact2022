@@ -19,8 +19,8 @@ public class Intake extends SubsystemBase {
 
   /** Creates a new Intake. */
   public Intake() {
-    IntakeCylinder = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 0, 1);
-    IntakeCylinder.set(Value.kOff);
+    IntakeCylinder = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 2, 3);
+    IntakeCylinder.set(Value.kReverse);
   }
   public void IntakeOn(Double output) {
     if (IntakeCylinder.get()==Value.kReverse || IntakeCylinder.get() == Value.kOff) {
@@ -30,9 +30,12 @@ public class Intake extends SubsystemBase {
     }
   }
   public void IntakeToggle() {
-    IntakeCylinder.toggle();
+    if (IntakeCylinder.get()==Value.kReverse || IntakeCylinder.get() == Value.kOff) {
+      IntakeCylinder.set(Value.kForward);
+    } if (IntakeCylinder.get()==Value.kForward){
+        IntakeCylinder.set(Value.kReverse);
+    }
   }
-
   @Override
   public void periodic() {
     // This method will be called once per scheduler run

@@ -10,6 +10,7 @@ import frc.robot.commands.ArmOut;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.HoodToggle;
 import frc.robot.commands.HookToggle;
+import frc.robot.commands.IndexOn;
 import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.Shoot;
@@ -92,7 +93,7 @@ public class RobotContainer {
     gamepadL1.whenPressed(new HoodToggle());
     gamepadA.whenHeld(new IntakeOn());
     gamepadR1.whenHeld(new Shoot());
-    gamepadY.whenHeld(new IntakeOn());
+    gamepadY.whenHeld(new IndexOn());
 
     
   }

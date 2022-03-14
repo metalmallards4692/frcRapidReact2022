@@ -15,9 +15,9 @@ public class Climber extends SubsystemBase {
 
   public Climber() {
     ClimbCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 4, 5);
-    ClimbCylinders.set(Value.kOff);
+    ClimbCylinders.set(Value.kForward);
     HookCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 6, 7);
-    ClimbCylinders.set(Value.kOff);
+    ClimbCylinders.set(Value.kForward);
   }
 
   public void ArmOut() {
@@ -29,7 +29,11 @@ public class Climber extends SubsystemBase {
   }
 
   public void HookToggle() {
-    HookCylinders.toggle();
+    if (HookCylinders.get()==Value.kReverse || HookCylinders.get() == Value.kOff) {
+      HookCylinders.set(Value.kForward);
+    } if (HookCylinders.get()==Value.kForward){
+        HookCylinders.set(Value.kReverse);
+    }
   }
 
 
