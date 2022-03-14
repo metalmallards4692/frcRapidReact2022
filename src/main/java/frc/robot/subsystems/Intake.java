@@ -23,7 +23,11 @@ public class Intake extends SubsystemBase {
     IntakeCylinder.set(Value.kOff);
   }
   public void IntakeOn(Double output) {
-    IntakeMotor.set(output);
+    if (IntakeCylinder.get()==Value.kReverse || IntakeCylinder.get() == Value.kOff) {
+      IntakeMotor.set(0.0);
+    } else {
+      IntakeMotor.set(output);
+    }
   }
   public void IntakeToggle() {
     IntakeCylinder.toggle();

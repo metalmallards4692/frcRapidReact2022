@@ -1,6 +1,6 @@
 package frc.robot;
 
-import edu.wpi.first.math.kinematics.ChassisSpeeds;
+//import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.InstantCommand;
@@ -8,6 +8,10 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ArmIn;
 import frc.robot.commands.ArmOut;
 import frc.robot.commands.DefaultDriveCommand;
+import frc.robot.commands.HoodToggle;
+import frc.robot.commands.HookToggle;
+import frc.robot.commands.IntakeOn;
+import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.Shoot;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
@@ -77,13 +81,20 @@ public class RobotContainer {
    
     //Joystick Functions
     lBottom.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
-    rTrigger.whenHeld(new Shoot());
     lInside.whenPressed(new ArmIn());
     rInside.whenPressed(new ArmOut());
+    rOutside.whenPressed(new HookToggle());
+
     
 
     //Gamepad Functions
+    gamepadX.whenPressed(new IntakeToggle());
+    gamepadL1.whenPressed(new HoodToggle());
+    gamepadA.whenHeld(new IntakeOn());
+    gamepadR1.whenHeld(new Shoot());
+    gamepadY.whenHeld(new IntakeOn());
 
+    
   }
 
   public Command getAutonomousCommand() {
