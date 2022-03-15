@@ -49,16 +49,16 @@ public final class Constants {
     public static int gamepad = 3;
 
   //Gamepad Buttons
-    public static int GamepadA = 2;
-    public static int GamepadB = 3;
-    public static int GamepadX = 1;
+    public static int GamepadA = 1;
+    public static int GamepadB = 2;
+    public static int GamepadX = 3;
     public static int GamepadY = 4;
     public static int GamepadL1 = 5;
-    public static int GamepadR1 = 6;           
-    public static int GamepadSelect = 9;
-    public static int GamepadStart = 10;
-    public static int GamepadR3 = 11;
-    public static int GamepadL3 = 12;
+    public static int GamepadR1 = 6;          
+    //public static int GamepadSelect = 0;
+    //public static int GamepadStart = 0;
+    public static int GamepadR3 = 9;
+    public static int GamepadL3 = 10;
 
   //shooter motor ids
     public static int SHOOTER_MOTOR_1 = 34;

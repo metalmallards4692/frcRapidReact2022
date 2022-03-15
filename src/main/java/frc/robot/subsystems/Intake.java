@@ -14,26 +14,43 @@ import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
   CANSparkMax IntakeMotor = Constants.IntakeMotor;
-  private DoubleSolenoid IntakeCylinder;
+  private DoubleSolenoid IntakeCylinders;
+  CANSparkMax TransferMotor = Constants.TransferMotor;
   
 
   /** Creates a new Intake. */
   public Intake() {
-    IntakeCylinder = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 2, 3);
-    IntakeCylinder.set(Value.kReverse);
+    IntakeCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 2, 3);
+    IntakeCylinders.set(Value.kOff);
   }
   public void IntakeOn(Double output) {
-    if (IntakeCylinder.get()==Value.kReverse || IntakeCylinder.get() == Value.kOff) {
+    if (IntakeCylinders.get()==Value.kReverse || IntakeCylinders.get() == Value.kOff) {
       IntakeMotor.set(0.0);
+      TransferMotor.set(output * -1);
     } else {
-      IntakeMotor.set(output);
+      IntakeMotor.set(output * -1);
+      TransferMotor.set(output * -1);
     }
   }
+  /*
   public void IntakeToggle() {
-    if (IntakeCylinder.get()==Value.kReverse || IntakeCylinder.get() == Value.kOff) {
-      IntakeCylinder.set(Value.kForward);
-    } if (IntakeCylinder.get()==Value.kForward){
-        IntakeCylinder.set(Value.kReverse);
+    if (IntakeCylinders.get()==Value.kReverse || IntakeCylinders.get() == Value.kOff) {
+      IntakeCylinders.set(Value.kForward);
+    } if (IntakeCylinders.get()==Value.kForward){
+        IntakeCylinders.set(Value.kReverse);
+    }
+  }
+  public void IntakeOff() {
+    IntakeCylinders.set(Value.kOff);
+  }
+  */
+  public void IntakeToggle() {
+    DoubleSolenoid.Value val = IntakeCylinders.get();
+    if(val == DoubleSolenoid.Value.kForward) {
+      IntakeCylinders.set(Value.kReverse);
+    }
+    else {
+      IntakeCylinders.set(Value.kForward);
     }
   }
   @Override

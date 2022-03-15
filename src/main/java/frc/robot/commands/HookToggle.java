@@ -9,6 +9,7 @@ import frc.robot.Robot;
 
 public class HookToggle extends CommandBase {
   /** Creates a new HookToggle. */
+  boolean bDone = false;
   public HookToggle() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.climber);
@@ -16,21 +17,25 @@ public class HookToggle extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    bDone = false;
+    Robot.climber.HookToggle();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.climber.HookToggle();
+   bDone = true;
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return bDone;
   }
 }

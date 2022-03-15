@@ -9,6 +9,7 @@ import frc.robot.Robot;
 
 public class HoodToggle extends CommandBase {
   /** Creates a new HoodToggle. */
+  boolean bDone = false;
   public HoodToggle() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_shooter);
@@ -16,21 +17,25 @@ public class HoodToggle extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    bDone = false;
+    Robot.m_shooter.HoodToggle();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.m_shooter.HoodToggle();
+    bDone = true;
   }
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return bDone;
   }
 }

@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ArmIn;
 import frc.robot.commands.ArmOut;
+import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.HoodToggle;
 import frc.robot.commands.HookToggle;
@@ -72,8 +73,8 @@ public class RobotContainer {
 		gamepadA = new JoystickButton(gamepad, Constants.GamepadA);
 		gamepadY = new JoystickButton(gamepad, Constants.GamepadY);
 		gamepadB = new JoystickButton(gamepad, Constants.GamepadB);
-		gamepadStart = new JoystickButton(gamepad, Constants.GamepadStart);
-		gamepadSelect = new JoystickButton(gamepad, Constants.GamepadSelect);
+		//gamepadStart = new JoystickButton(gamepad, Constants.GamepadStart);
+		//gamepadSelect = new JoystickButton(gamepad, Constants.GamepadSelect);
 		gamepadR1 = new JoystickButton(gamepad, Constants.GamepadR1);
     gamepadL1 = new JoystickButton(gamepad, Constants.GamepadL1);
     gamepadR3 = new JoystickButton(gamepad, Constants.GamepadR3);
@@ -99,7 +100,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new InstantCommand();
+    return new AutoShoot();
   }
 
   private static double deadband(double value, double deadband) {

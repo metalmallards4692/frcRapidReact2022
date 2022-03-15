@@ -19,17 +19,17 @@ public class Indexer extends SubsystemBase {
   public Indexer() {}
 
   public void IndexOn(Double output) {
-    RightTopIndexer.set(output);
-    RightBottomIndexer.set(output);
+    RightTopIndexer.set(output * -1);
+    RightBottomIndexer.set(output * -1);
     LeftTopIndexer.set(output);
     LeftBottomIndexer.set(output);
   }
   public void TopIndexOn(Double output) {
-    RightTopIndexer.set(output);
+    RightTopIndexer.set(output * -1);
     LeftTopIndexer.set(output);
   }
   public void BottomIndexOn(Double output) {
-    RightBottomIndexer.set(output);
+    RightBottomIndexer.set(output * -1);
     LeftBottomIndexer.set(output);
   }
   @Override

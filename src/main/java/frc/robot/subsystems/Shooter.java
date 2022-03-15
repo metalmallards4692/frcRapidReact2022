@@ -21,18 +21,36 @@ public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   public Shooter() {
     HoodCylinder = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 0, 1);
-    HoodCylinder.set(Value.kReverse);
+    HoodCylinder.set(Value.kOff);
   }
   public void ShooterOn(double output) {
     ShooterMotor1.set(output * -1);
    ShooterMotor2.set(output * -1); 
  }
- public void HoodToggle() {
+ /*public void HoodToggle() {
   if (HoodCylinder.get()==Value.kReverse || HoodCylinder.get() == Value.kOff) {
     HoodCylinder.set(Value.kForward);
   } if (HoodCylinder.get()==Value.kForward){
       HoodCylinder.set(Value.kReverse);
   }
+}
+public void HoodOff() {
+  HoodCylinder.set(Value.kOff);
+}
+*/
+public void HoodToggle() {
+  DoubleSolenoid.Value val = HoodCylinder.get();
+  if(val == DoubleSolenoid.Value.kForward) {
+    HoodCylinder.set(Value.kReverse);
+  }
+  else {
+    HoodCylinder.set(Value.kForward);
+  }
+}
+
+public void AutoShoot(Double output) {
+  ShooterMotor1.set(output * -1);
+  ShooterMotor2.set(output * -1);
 }
  @Override
  public void periodic() {
