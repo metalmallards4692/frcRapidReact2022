@@ -21,9 +21,8 @@ public class IntakeOn extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.intake.IntakeOn(.3);
+    Robot.intake.IntakeOn(1.0);
   }
-
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {

@@ -49,7 +49,7 @@ public void HoodToggle() {
 }
 
 public void AutoShoot(Double output) {
-  ShooterMotor1.set(output * -1);
+  ShooterMotor1.set(output * -1 / 2);
   ShooterMotor2.set(output * -1);
 }
  @Override

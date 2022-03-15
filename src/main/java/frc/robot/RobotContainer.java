@@ -15,6 +15,7 @@ import frc.robot.commands.IndexOn;
 import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.Shoot;
+import frc.robot.commands.SuperShoot;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class RobotContainer {
@@ -95,6 +96,7 @@ public class RobotContainer {
     gamepadA.whenHeld(new IntakeOn());
     gamepadR1.whenHeld(new Shoot());
     gamepadY.whenHeld(new IndexOn());
+    gamepadB.whenHeld(new SuperShoot());
 
     
   }

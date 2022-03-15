@@ -27,16 +27,16 @@ public class AutoShoot extends CommandBase {
   @Override
   public void execute() {
     Double val = ShootTimer.get();
-    if (val < 10) {
-      Robot.m_shooter.ShooterOn(0.1);
-    } if (val < 100) {
-      Robot.m_shooter.ShooterOn(0.1);
-      Robot.indexer.TopIndexOn(0.1);
-    } if (val < 1000) {
-      Robot.m_shooter.ShooterOn(0.1);
-      Robot.indexer.TopIndexOn(0.1);
-      Robot.indexer.BottomIndexOn(0.1);
-    } else {
+    if (val < 2) {
+      Robot.m_shooter.ShooterOn(0.35);
+    } else if (val < 5) {
+      Robot.m_shooter.ShooterOn(0.35);
+      Robot.indexer.TopIndexOn(1.0);
+    } else if (val < 8) {
+      Robot.m_shooter.ShooterOn(0.35);
+      Robot.indexer.TopIndexOn(1.0);
+      Robot.indexer.BottomIndexOn(1.0);
+    } else if (val <=10) {
       Robot.m_shooter.ShooterOn(0.0);
       Robot.indexer.TopIndexOn(0.0);
       Robot.indexer.BottomIndexOn(0.0);
