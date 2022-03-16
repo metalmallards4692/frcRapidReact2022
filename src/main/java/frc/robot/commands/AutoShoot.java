@@ -9,6 +9,8 @@ import frc.robot.Robot;
 
 public class AutoShoot extends CommandBase {
   private Timer ShootTimer = new Timer();
+  private Double Shooter_Power = .4;
+  private Double index_Power = 1.0;
   /** Creates a new AutoShoot. */
   public AutoShoot() {
     addRequirements(Robot.m_shooter);
@@ -28,15 +30,15 @@ public class AutoShoot extends CommandBase {
   public void execute() {
     Double val = ShootTimer.get();
     if (val < 2) {
-      Robot.m_shooter.ShooterOn(0.35);
+      Robot.m_shooter.ShooterOn(Shooter_Power);
     } else if (val < 5) {
-      Robot.m_shooter.ShooterOn(0.35);
-      Robot.indexer.TopIndexOn(1.0);
+      Robot.m_shooter.ShooterOn(Shooter_Power);
+      Robot.indexer.TopIndexOn(index_Power);
     } else if (val < 8) {
-      Robot.m_shooter.ShooterOn(0.35);
-      Robot.indexer.TopIndexOn(1.0);
-      Robot.indexer.BottomIndexOn(1.0);
-    } else if (val <=10) {
+      Robot.m_shooter.ShooterOn(Shooter_Power);
+      Robot.indexer.TopIndexOn(index_Power);
+      Robot.indexer.BottomIndexOn(index_Power);
+    } else if (val <=15) {
       Robot.m_shooter.ShooterOn(0.0);
       Robot.indexer.TopIndexOn(0.0);
       Robot.indexer.BottomIndexOn(0.0);

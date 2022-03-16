@@ -3,7 +3,7 @@ package frc.robot;
 //import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+//import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ArmIn;
 import frc.robot.commands.ArmOut;
@@ -50,9 +50,9 @@ public class RobotContainer {
 // Try to find a way to get damp rate on joystick values or motors soit doesnt go from 0 - 100;
   public RobotContainer() {
     m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(m_drivetrainSubsystem,
-        () -> -modifyAxis(leftJoy.getY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-        () -> -modifyAxis(leftJoy.getX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-        () -> -modifyAxis(rightJoy.getZ()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND));
+        () -> -modifyAxis(rightJoy.getY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
+        () -> -modifyAxis(rightJoy.getX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
+        () -> -modifyAxis(rightJoy.getZ()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND / 2));
 
     configureButtonBindings();
   }
@@ -83,7 +83,7 @@ public class RobotContainer {
    
    
     //Joystick Functions
-    lBottom.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
+    rBottom.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
     lInside.whenPressed(new ArmIn());
     rInside.whenPressed(new ArmOut());
     rOutside.whenPressed(new HookToggle());
@@ -118,7 +118,7 @@ public class RobotContainer {
   }
   private static double modifyAxis(double value) {
     // Deadband
-    value = deadband(value, 0.05);
+    value = deadband(value, 0.005);
 
     // Square the axis
     value = Math.copySign(value * value, value);
