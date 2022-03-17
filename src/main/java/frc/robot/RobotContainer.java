@@ -14,8 +14,9 @@ import frc.robot.commands.HookToggle;
 import frc.robot.commands.IndexOn;
 import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeToggle;
+import frc.robot.commands.Lob;
+import frc.robot.commands.Reverse;
 import frc.robot.commands.Shoot;
-import frc.robot.commands.SuperShoot;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class RobotContainer {
@@ -96,7 +97,8 @@ public class RobotContainer {
     gamepadA.whenHeld(new IntakeOn());
     gamepadR1.whenHeld(new Shoot());
     gamepadY.whenHeld(new IndexOn());
-    gamepadB.whenHeld(new SuperShoot());
+    gamepadB.whenHeld(new Reverse());
+    gamepadR3.whenHeld(new Lob());
 
     
   }
@@ -118,7 +120,7 @@ public class RobotContainer {
   }
   private static double modifyAxis(double value) {
     // Deadband
-    value = deadband(value, 0.005);
+    value = deadband(value, 0.05);
 
     // Square the axis
     value = Math.copySign(value * value, value);

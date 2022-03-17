@@ -15,7 +15,7 @@ import frc.robot.Constants;
 public class Shooter extends SubsystemBase {
   CANSparkMax ShooterMotor1 = Constants.ShootMotor1;
   CANSparkMax ShooterMotor2 = Constants.ShootMotor2;
-  private DoubleSolenoid HoodCylinder;
+  public DoubleSolenoid HoodCylinder;
   
   
   /** Creates a new Shooter. */
