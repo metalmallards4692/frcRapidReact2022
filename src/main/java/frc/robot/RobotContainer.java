@@ -85,18 +85,18 @@ public class RobotContainer {
    
     //Joystick Functions
     rBottom.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
+    lOutside.whenPressed(new ArmOut());
     lInside.whenPressed(new ArmIn());
-    rInside.whenPressed(new ArmOut());
-    rOutside.whenPressed(new HookToggle());
+    lTrigger.whenPressed(new HookToggle());
 
     
 
     //Gamepad Functions
-    gamepadX.whenPressed(new IntakeToggle());
+    gamepadY.whenPressed(new IntakeToggle());
     gamepadL1.whenPressed(new HoodToggle());
     gamepadA.whenHeld(new IntakeOn());
     gamepadR1.whenHeld(new Shoot());
-    gamepadY.whenHeld(new IndexOn());
+    gamepadX.whenHeld(new IndexOn());
     gamepadB.whenHeld(new Reverse());
     gamepadR3.whenHeld(new Lob());
 
