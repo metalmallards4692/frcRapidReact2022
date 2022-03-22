@@ -25,7 +25,7 @@ public class RobotContainer {
   private static final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
    // Creates a SlewRateLimiter that limits the rate of change of the signal to 0.5 units per second
-   static SlewRateLimiter filter = new SlewRateLimiter(0.5);
+  // static SlewRateLimiter filter = new SlewRateLimiter(0.5);
 
  //Joystick
  public final Joystick leftJoy = new Joystick(Constants.leftJoystick);
@@ -134,7 +134,7 @@ public class RobotContainer {
     value = Math.copySign(value * value, value);
 
     // Applies Slew Limiter
-    value = filter.calculate(value);
+    //value = filter.calculate(value);
 
     return value;
   }
