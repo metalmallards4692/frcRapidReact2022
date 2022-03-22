@@ -19,10 +19,12 @@ public class Intake extends SubsystemBase {
   
 
   /** Creates a new Intake. */
+ 
   public Intake() {
     IntakeCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 2, 3);
     IntakeCylinders.set(Value.kOff);
   }
+  /*
   public void IntakeOn(Double output) {
     if (IntakeCylinders.get()==Value.kReverse || IntakeCylinders.get() == Value.kOff) {
       IntakeMotor.set(0.0);
@@ -32,18 +34,13 @@ public class Intake extends SubsystemBase {
       TransferMotor.set(output * -1);
     }
   }
-  /*
-  public void IntakeToggle() {
-    if (IntakeCylinders.get()==Value.kReverse || IntakeCylinders.get() == Value.kOff) {
-      IntakeCylinders.set(Value.kForward);
-    } if (IntakeCylinders.get()==Value.kForward){
-        IntakeCylinders.set(Value.kReverse);
-    }
-  }
-  public void IntakeOff() {
-    IntakeCylinders.set(Value.kOff);
-  }
   */
+  public void IntakeOn(Double output) {
+    IntakeMotor.set(output * -1);
+    TransferMotor.set(output * -1);
+  }
+  
+
   public void IntakeToggle() {
     DoubleSolenoid.Value val = IntakeCylinders.get();
     if(val == DoubleSolenoid.Value.kForward) {

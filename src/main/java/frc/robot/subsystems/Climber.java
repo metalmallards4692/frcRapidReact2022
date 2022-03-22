@@ -14,9 +14,9 @@ public class Climber extends SubsystemBase {
   private DoubleSolenoid HookCylinders;
 
   public Climber() {
-    ClimbCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 4, 5);
+    ClimbCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 6, 7);
     ClimbCylinders.set(Value.kForward);
-    HookCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 6, 7);
+    HookCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 4, 5);
     ClimbCylinders.set(Value.kForward);
   }
 

@@ -21,7 +21,7 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
+  private static final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
  //Joystick
  public final Joystick leftJoy = new Joystick(Constants.leftJoystick);
@@ -104,7 +104,11 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new AutoShoot();
+    return new AutoShoot(m_drivetrainSubsystem);
+  }
+
+  public static DrivetrainSubsystem getDrivetrain(){
+    return m_drivetrainSubsystem;
   }
 
   private static double deadband(double value, double deadband) {

@@ -25,9 +25,9 @@ public class Shoot extends CommandBase {
   public void execute() {
     DoubleSolenoid.Value val = Robot.m_shooter.HoodCylinder.get();
     if(val == Value.kForward) {
-      Robot.m_shooter.ShooterOn(.35);
+      Robot.m_shooter.ShooterOn(.50);
     } else {
-      Robot.m_shooter.ShooterOn(.35);
+      Robot.m_shooter.ShooterOn(.50);
     }    
   }
 

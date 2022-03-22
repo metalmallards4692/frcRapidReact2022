@@ -21,7 +21,7 @@ public class Shooter extends SubsystemBase {
   /** Creates a new Shooter. */
   public Shooter() {
     HoodCylinder = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 0, 1);
-    HoodCylinder.set(Value.kOff);
+    HoodCylinder.set(Value.kForward);
   }
   public void ShooterOn(double output) {
     ShooterMotor1.set(output * -1);

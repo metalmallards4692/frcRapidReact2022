@@ -4,10 +4,14 @@
 
 package frc.robot;
 
+import edu.wpi.first.cameraserver.CameraServer;
+import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.DrivetrainSubsystem;
+//import frc.robot.subsystems.DrivetrainSubsystem;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
@@ -27,6 +31,8 @@ private Command m_autonomousCommand;
   public static Climber climber = new Climber();
   public static Indexer indexer = new Indexer();
   public static Intake intake = new Intake();
+
+
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -36,6 +42,9 @@ private Command m_autonomousCommand;
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    UsbCamera cam = CameraServer.startAutomaticCapture();
+    cam.setResolution(160, 120);
   }
 
   /**
