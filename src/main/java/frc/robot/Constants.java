@@ -24,7 +24,7 @@ public final class Constants {
     public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 25; 
     public static final int BACK_LEFT_MODULE_STEER_MOTOR = 29; 
     public static final int BACK_LEFT_MODULE_STEER_ENCODER = 11; 
-    public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(136.84570870065687); //(77.255860
+    public static final double BACK_LEFT_MODULE_STEER_OFFSET = -Math.toRadians(136.84570870065687); //77.255860
 
     public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 23; 
     public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 24; 
@@ -77,6 +77,7 @@ public final class Constants {
     public static CANSparkMax RightTopIndex = new CANSparkMax(Constants.RIGHT_TOP_INDEX, MotorType.kBrushless);
     public static CANSparkMax LeftBottomIndex = new CANSparkMax(Constants.LEFT_BOTTOM_INDEX, MotorType.kBrushless);
     public static CANSparkMax LeftTopIndex = new CANSparkMax(Constants.LEFT_TOP_INDEX, MotorType.kBrushless);
+    
   //intake Motor
     public static int INTAKE_MOTOR = 30;
     public static int TRANSFER_MOTOR = 36;

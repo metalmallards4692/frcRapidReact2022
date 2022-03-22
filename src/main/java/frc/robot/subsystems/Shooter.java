@@ -25,7 +25,7 @@ public class Shooter extends SubsystemBase {
   }
   public void ShooterOn(double output) {
     ShooterMotor1.set(output * -1);
-   ShooterMotor2.set(output * -1); 
+    ShooterMotor2.set(output * -1); 
  }
  /*public void HoodToggle() {
   if (HoodCylinder.get()==Value.kReverse || HoodCylinder.get() == Value.kOff) {

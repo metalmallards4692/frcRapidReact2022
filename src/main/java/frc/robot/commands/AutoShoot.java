@@ -3,7 +3,6 @@
 // the WPILib BSD license file in the root directory of this project.
 
 package frc.robot.commands;
-import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.Timer;
@@ -11,7 +10,6 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DrivetrainSubsystem;
-import edu.wpi.first.wpilibj.SPI;
 
 public class AutoShoot extends CommandBase {
   private final DrivetrainSubsystem m_DrivetrainSubsystem;
