@@ -6,13 +6,15 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class TimedShoot extends CommandBase {
   /** Creates a new TimedShoot. */
   private Timer ShootTimer = new Timer();
-  private Double Shooter_Power = .6;
   private Double index_Power = .3;
+  private double SHOOT_POWER;
+
   
   public TimedShoot() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -31,12 +33,13 @@ public class TimedShoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    SHOOT_POWER = Robot.m_shooter.CalculateRPM();
     Double val = ShootTimer.get();
     if (val < .5) {
-      Robot.m_shooter.ShooterOn(Shooter_Power);
+      Robot.m_shooter.ShooterOn(SHOOT_POWER);
       Robot.intake.IntakeOn(.5);
     } else {
-      Robot.m_shooter.ShooterOn(Shooter_Power);
+      Robot.m_shooter.ShooterOn(SHOOT_POWER);
       Robot.indexer.IndexOn(index_Power);
       Robot.intake.IntakeOn(.3);
     }

@@ -6,6 +6,8 @@ package frc.robot;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.cscore.UsbCamera;
+import edu.wpi.first.wpilibj.PneumaticHub;
+import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -30,6 +32,10 @@ private Command m_autonomousCommand;
   public static Indexer indexer = new Indexer();
   public static Intake intake = new Intake();
 
+  public static PneumaticHub hub = new PneumaticHub(3);
+  public static PowerDistribution powerhub = new PowerDistribution(1, PowerDistribution.ModuleType.kRev);
+  
+
 
   /**
    * This function is run when the robot is first started up and should be used for any
@@ -41,6 +47,9 @@ private Command m_autonomousCommand;
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
+    hub.clearStickyFaults();
+    powerhub.clearStickyFaults();
+    
     UsbCamera cam = CameraServer.startAutomaticCapture();
     cam.setResolution(160, 120);
   }

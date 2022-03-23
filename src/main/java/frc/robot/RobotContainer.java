@@ -10,14 +10,12 @@ import frc.robot.commands.ArmOut;
 import frc.robot.commands.AutoAim;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DefaultDriveCommand;
-import frc.robot.commands.HoodToggle;
 import frc.robot.commands.HookToggle;
 import frc.robot.commands.IndexOn;
 import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.Lob;
 import frc.robot.commands.Reverse;
-import frc.robot.commands.Shoot;
 import frc.robot.commands.TimedShoot;
 import frc.robot.subsystems.DrivetrainSubsystem;
 

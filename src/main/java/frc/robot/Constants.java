@@ -42,6 +42,7 @@ public final class Constants {
 
     //Distance
     public static double distance;
+    public static double rpm;
    
   //Joystick Buttons
     public static int JoystickTriggerR = 1;

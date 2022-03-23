@@ -16,6 +16,8 @@ public class Shooter extends SubsystemBase {
   CANSparkMax ShooterMotor1 = Constants.ShootMotor1;
   CANSparkMax ShooterMotor2 = Constants.ShootMotor2;
   public DoubleSolenoid HoodCylinder;
+  Double distance;
+  Double RPM;
   
   
   /** Creates a new Shooter. */
@@ -27,6 +29,15 @@ public class Shooter extends SubsystemBase {
     ShooterMotor1.set(output * -1);
     ShooterMotor2.set(output * -1); 
  }
+ public Double CalculateRPM() {
+  //distance = Constants.distance;
+if (distance < 10) {
+  RPM = 0.5;
+} else {
+  RPM = 0.2;
+}
+  return RPM;
+}
  /*public void HoodToggle() {
   if (HoodCylinder.get()==Value.kReverse || HoodCylinder.get() == Value.kOff) {
     HoodCylinder.set(Value.kForward);
