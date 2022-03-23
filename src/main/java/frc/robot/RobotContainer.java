@@ -1,6 +1,5 @@
 package frc.robot;
 
-import edu.wpi.first.math.filter.SlewRateLimiter;
 //import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -8,6 +7,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ArmIn;
 import frc.robot.commands.ArmOut;
+import frc.robot.commands.AutoAim;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.HoodToggle;
@@ -26,6 +26,9 @@ public class RobotContainer {
 
    // Creates a SlewRateLimiter that limits the rate of change of the signal to 0.5 units per second
   // static SlewRateLimiter filter = new SlewRateLimiter(0.5);
+
+   //Camera
+   //private final LimeLight limeLight1 = new LimeLight("limelight");
 
  //Joystick
  public final Joystick leftJoy = new Joystick(Constants.leftJoystick);
@@ -97,7 +100,7 @@ public class RobotContainer {
 
     //Gamepad Functions
     gamepadY.whenPressed(new IntakeToggle());
-    gamepadL1.whenPressed(new HoodToggle());
+    gamepadL1.whenHeld(new AutoAim());
     gamepadA.whenHeld(new IntakeOn());
     gamepadR1.whenHeld(new Shoot());
     gamepadX.whenHeld(new IndexOn());

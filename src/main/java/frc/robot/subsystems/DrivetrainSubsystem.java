@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import oi.limelightvision.limelight.frc.LimeLight;
 
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
@@ -25,6 +26,8 @@ import static frc.robot.Constants.*;
 
 public class DrivetrainSubsystem extends SubsystemBase {
         
+private LimeLight _limelight;
+
   public static final double MAX_VOLTAGE = 12.0;
  
   public static final double MAX_VELOCITY_METERS_PER_SECOND = 5676.0 / 60.0 * 
@@ -57,7 +60,8 @@ private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connect
   private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
   
   public DrivetrainSubsystem() {
-    final ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
+        _limelight = new LimeLight();
+        final ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
 
     m_frontLeftModule = Mk3SwerveModuleHelper.createNeo(
             // This parameter is optional, but will allow you to see the current state of the module on the dashboard.
@@ -141,6 +145,11 @@ private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connect
   public void drive(final ChassisSpeeds chassisSpeeds) {
     m_chassisSpeeds = chassisSpeeds;
   }
+  
+  public LimeLight gLimeLight(){
+        return _limelight;
+    }
+  
   @Override
   public void periodic() {
     final SwerveModuleState[] states = m_kinematics.toSwerveModuleStates(m_chassisSpeeds);
