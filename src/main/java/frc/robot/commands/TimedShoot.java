@@ -4,25 +4,21 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
-import frc.robot.RobotContainer;
-import frc.robot.subsystems.DrivetrainSubsystem;
 
-public class AutoShoot extends CommandBase {
-  private final DrivetrainSubsystem m_DrivetrainSubsystem;
+public class TimedShoot extends CommandBase {
+  /** Creates a new TimedShoot. */
   private Timer ShootTimer = new Timer();
-  private Double Shooter_Power = .42;
+  private Double Shooter_Power = .6;
   private Double index_Power = .3;
-  /** Creates a new AutoShoot. */
-  public AutoShoot(DrivetrainSubsystem m_DrivetrainSubsystem) {
-    this.m_DrivetrainSubsystem = m_DrivetrainSubsystem;
+  
+  public TimedShoot() {
+    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_shooter);
     addRequirements(Robot.indexer);
-    addRequirements(RobotContainer.getDrivetrain());
-    // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(Robot.intake);
   }
 
   // Called when the command is initially scheduled.
@@ -30,28 +26,19 @@ public class AutoShoot extends CommandBase {
   public void initialize() {
     ShootTimer.reset();
     ShootTimer.start();
-    m_DrivetrainSubsystem.zeroGyroscope();
-    
-  }  
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     Double val = ShootTimer.get();
-    if (val < 2) {
+    if (val < .5) {
       Robot.m_shooter.ShooterOn(Shooter_Power);
-    } else if (val < 4) {
-      Robot.m_shooter.ShooterOn(Shooter_Power);
-      Robot.indexer.IndexOn(index_Power);
-    } else if (val < 6) {
+      Robot.intake.IntakeOn(.5);
+    } else {
       Robot.m_shooter.ShooterOn(Shooter_Power);
       Robot.indexer.IndexOn(index_Power);
-    } else if (val < 10){
-      RobotContainer.getDrivetrain().drive(new ChassisSpeeds(-0.4, 0.0, 0.0));
-    } else if (val <=11.5) {
-      RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, 0.0));
-      Robot.m_shooter.ShooterOn(0.0);
-      Robot.indexer.IndexOn(0.0);
+      Robot.intake.IntakeOn(.3);
     }
   }
 

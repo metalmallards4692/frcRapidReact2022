@@ -35,6 +35,14 @@ public final class Constants {
     public static final int rightJoystick = 0;
   	public static final int leftJoystick = 1;
    
+   //Limelight Constants
+    public static final double cameraAngleDegrees = 0 ;
+    public static final double goalHeightMeters = 0;
+    public static final double cameraHeightMeters = 0;
+
+    //Distance
+    public static double distance;
+   
   //Joystick Buttons
     public static int JoystickTriggerR = 1;
     public static int JoystickTriggerL = 1;
@@ -68,15 +76,11 @@ public final class Constants {
     public static CANSparkMax ShootMotor2 = new CANSparkMax(Constants.SHOOTER_MOTOR_2, MotorType.kBrushless);
 
   //Indexer Motors
-    public static int RIGHT_BOTTOM_INDEX = 38;
-    public static int RIGHT_TOP_INDEX = 35;
-    public static int LEFT_BOTTOM_INDEX = 32;
-    public static int LEFT_TOP_INDEX = 33;
+    public static int RIGHT_INDEX = 38;
+    public static int LEFT_INDEX = 33;
   //Create Index Motors
-    public static CANSparkMax RightBottomIndex = new CANSparkMax(Constants.RIGHT_BOTTOM_INDEX, MotorType.kBrushless);
-    public static CANSparkMax RightTopIndex = new CANSparkMax(Constants.RIGHT_TOP_INDEX, MotorType.kBrushless);
-    public static CANSparkMax LeftBottomIndex = new CANSparkMax(Constants.LEFT_BOTTOM_INDEX, MotorType.kBrushless);
-    public static CANSparkMax LeftTopIndex = new CANSparkMax(Constants.LEFT_TOP_INDEX, MotorType.kBrushless);
+    public static CANSparkMax RightIndex = new CANSparkMax(Constants.RIGHT_INDEX, MotorType.kBrushless);
+    public static CANSparkMax LeftIndex = new CANSparkMax(Constants.LEFT_INDEX, MotorType.kBrushless);
     
   //intake Motor
     public static int INTAKE_MOTOR = 30;

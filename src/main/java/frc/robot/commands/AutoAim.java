@@ -6,11 +6,12 @@ package frc.robot.commands;
 
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.RobotContainer;
 
 public class AutoAim extends CommandBase {
   /** Creates a new AutoAim. */
-  private double kpAim = 0.05;
+  private double kpAim = 0.5;
   //private double kpDistance = 0.05;
   //private double m_moveValue;
   private double m_rotateValue;
@@ -19,6 +20,15 @@ public class AutoAim extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.getDrivetrain());
   }
+
+public double estimateDis() {
+  double cot = cotan(Constants.cameraAngleDegrees + RobotContainer.getDrivetrain().gLimeLight().getdegVerticalToTarget());
+  return cot * (Constants.goalHeightMeters - Constants.cameraHeightMeters);
+}
+
+public double cotan(double aDegrees) {
+  return Math.cos(Math.toRadians(aDegrees))/Math.sin(Math.toRadians(aDegrees));
+}
 
   // Called when the command is initially scheduled.
   @Override
@@ -30,13 +40,14 @@ public class AutoAim extends CommandBase {
     double tx = RobotContainer.getDrivetrain().gLimeLight().getdegRotationToTarget();
     //double ty = RobotContainer.getDrivetrain().gLimeLight().getdegVerticalToTarget();
     boolean targetFound = RobotContainer.getDrivetrain().gLimeLight().getIsTargetFound();
+    Constants.distance = estimateDis();
 
-    if(targetFound){
+    if(targetFound==true){
       //m_moveValue = ty * kpDistance;
       m_rotateValue = tx * kpAim;
     }else{
      // m_moveValue = 0;
-      m_rotateValue = .3;
+      m_rotateValue = 0.0;
     }
 
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, m_rotateValue));
@@ -45,7 +56,9 @@ public class AutoAim extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, 0.0));
+  }
 
   // Returns true when the command should end.
   @Override
