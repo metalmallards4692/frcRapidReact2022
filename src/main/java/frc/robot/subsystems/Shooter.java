@@ -30,11 +30,11 @@ public class Shooter extends SubsystemBase {
     ShooterMotor2.set(output * -1); 
  }
  public Double CalculateRPM() {
-  //distance = Constants.distance;
+  distance = Constants.distance;
 if (distance < 10) {
-  RPM = 0.5;
+  RPM = 1.0;
 } else {
-  RPM = 0.2;
+  RPM = distance * .2;
 }
   return RPM;
 }

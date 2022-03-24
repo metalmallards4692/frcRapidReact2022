@@ -12,10 +12,12 @@ import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.HookToggle;
 import frc.robot.commands.IndexOn;
+import frc.robot.commands.IndexWithStopper;
 import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.Lob;
 import frc.robot.commands.Reverse;
+import frc.robot.commands.Shoot;
 import frc.robot.commands.TimedShoot;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
@@ -101,8 +103,9 @@ public class RobotContainer {
     gamepadY.whenPressed(new IntakeToggle());
     gamepadL1.whenHeld(new AutoAim());
     gamepadA.whenHeld(new IntakeOn());
-    gamepadR1.whenHeld(new TimedShoot());
-    gamepadX.whenHeld(new IndexOn());
+    gamepadR1.whenHeld(new Shoot());
+    //gamepadX.whenHeld(new IndexOn());
+    gamepadX.whenHeld(new IndexWithStopper());
     gamepadB.whenHeld(new Reverse());
     gamepadR3.whenHeld(new Lob());
 

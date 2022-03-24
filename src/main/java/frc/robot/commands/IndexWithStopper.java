@@ -9,12 +9,12 @@ import frc.robot.Robot;
 
 public class IndexWithStopper extends CommandBase {
   /** Creates a new IndexWithStopper. */
+  double IR;
   public IndexWithStopper() {
     // Use addRequirements() here to declare subsystem dependencies.
    
     addRequirements(Robot.indexer);
   }
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
@@ -22,10 +22,10 @@ public class IndexWithStopper extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    int proximity = Robot.indexer.getSensor().getProximity();
-    if (proximity < 1000) {
+    IR = Robot.indexer.getSensor().getProximity();
+    if (IR > 1000) {
       Robot.indexer.IndexOn(0.0);
-    } else {
+    } else { 
       Robot.indexer.IndexOn(.3);
     }
   }

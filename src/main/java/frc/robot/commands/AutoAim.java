@@ -12,7 +12,7 @@ import frc.robot.RobotContainer;
 
 public class AutoAim extends CommandBase {
   /** Creates a new AutoAim. */
-  private double kpAim = 0.5;
+  private double kpAim = 0.05;
   //private double kpDistance = 0.05;
   //private double m_moveValue;
   private double m_rotateValue;
@@ -45,14 +45,14 @@ public double cotan(double aDegrees) {
 
     if(targetFound==true){
       //m_moveValue = ty * kpDistance;
-      m_rotateValue = tx * kpAim;
+      m_rotateValue = tx * kpAim * -1;
     }else{
      // m_moveValue = 0;
-      m_rotateValue = 0.0;
+      m_rotateValue = 0.5;
     }
 
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, m_rotateValue));
-    SmartDashboard.putNumber("X Error", tx);
+    SmartDashboard.putNumber("X Error", RobotContainer.getDrivetrain().gLimeLight().getdegRotationToTarget());
     SmartDashboard.putNumber("Distance", Constants.distance);
   }
 

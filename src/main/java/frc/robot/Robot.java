@@ -9,6 +9,7 @@ import edu.wpi.first.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.PneumaticHub;
 import edu.wpi.first.wpilibj.PowerDistribution;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
 import frc.robot.subsystems.Climber;
@@ -49,7 +50,8 @@ private Command m_autonomousCommand;
 
     hub.clearStickyFaults();
     powerhub.clearStickyFaults();
-    
+    SmartDashboard.putNumber("X Error", RobotContainer.getDrivetrain().gLimeLight().getdegRotationToTarget());
+    SmartDashboard.putNumber("Distance", Constants.distance);
     UsbCamera cam = CameraServer.startAutomaticCapture();
     cam.setResolution(160, 120);
   }
