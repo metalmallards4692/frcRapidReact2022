@@ -35,7 +35,7 @@ public class TimedShoot extends CommandBase {
   public void execute() {
     SHOOT_POWER = Robot.m_shooter.CalculateRPM();
     Double val = ShootTimer.get();
-    if (val < .5) {
+    if (val < .25) {
       Robot.m_shooter.ShooterOn(SHOOT_POWER);
       Robot.intake.IntakeOn(.5);
     } else {

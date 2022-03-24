@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 //import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
+import frc.robot.commands.AimAndShoot;
 import frc.robot.commands.ArmIn;
 import frc.robot.commands.ArmOut;
 import frc.robot.commands.AutoAim;
@@ -103,7 +104,7 @@ public class RobotContainer {
     gamepadY.whenPressed(new IntakeToggle());
     gamepadL1.whenHeld(new AutoAim());
     gamepadA.whenHeld(new IntakeOn());
-    gamepadR1.whenHeld(new Shoot());
+    gamepadR1.whenHeld(new AimAndShoot());
     //gamepadX.whenHeld(new IndexOn());
     gamepadX.whenHeld(new IndexWithStopper());
     gamepadB.whenHeld(new Reverse());

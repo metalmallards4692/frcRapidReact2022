@@ -31,7 +31,7 @@ public class Shooter extends SubsystemBase {
  }
  public Double CalculateRPM() {
   distance = Constants.distance;
-if (distance < 10) {
+if (distance > 5) {
   RPM = 1.0;
 } else {
   RPM = distance * .2;

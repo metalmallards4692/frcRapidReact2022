@@ -50,8 +50,6 @@ private Command m_autonomousCommand;
 
     hub.clearStickyFaults();
     powerhub.clearStickyFaults();
-    SmartDashboard.putNumber("X Error", RobotContainer.getDrivetrain().gLimeLight().getdegRotationToTarget());
-    SmartDashboard.putNumber("Distance", Constants.distance);
     UsbCamera cam = CameraServer.startAutomaticCapture();
     cam.setResolution(160, 120);
   }

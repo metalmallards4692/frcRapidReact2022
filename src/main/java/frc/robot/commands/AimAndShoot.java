@@ -4,38 +4,47 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
-public class IndexWithStopper extends CommandBase {
-  /** Creates a new IndexWithStopper. */
-  double IR;
-  public IndexWithStopper() {
+public class AimAndShoot extends CommandBase {
+  private Timer ShootTimer = new Timer();
+  /** Creates a new AimAndShoot. */
+  public AimAndShoot() {
     // Use addRequirements() here to declare subsystem dependencies.
-   
+    addRequirements(Robot.m_shooter);
     addRequirements(Robot.indexer);
+    addRequirements(RobotContainer.getDrivetrain());
   }
+
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    ShootTimer.reset();
+    ShootTimer.start();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    IR = Robot.indexer.getSensor().getProximity();
-    if (IR >= 1000) {
-      Robot.indexer.IndexOn(0.0);
-    } else { 
-      Robot.indexer.IndexOn(.3);
+    Double val = ShootTimer.get();
+    if (val < 1) {
+      new AutoAim();
+    } else {
+      new AutoAim();
+      new TimedShoot();
     }
-    SmartDashboard.putNumber("Proximity", IR);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.m_shooter.ShooterOn(0.0);
     Robot.indexer.IndexOn(0.0);
+    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, 0.0));
   }
 
   // Returns true when the command should end.
