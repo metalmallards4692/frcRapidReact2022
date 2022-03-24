@@ -37,8 +37,8 @@ public final class Constants {
    
    //Limelight Constants
     public static final double cameraAngleDegrees = 0 ;
-    public static final double goalHeightMeters = 0;
-    public static final double cameraHeightMeters = 0;
+    public static final double goalHeightMeters = 2.6416;
+    public static final double cameraHeightMeters = 1.1049;
 
     //Distance
     public static double distance;

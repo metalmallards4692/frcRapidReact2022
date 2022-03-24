@@ -15,9 +15,9 @@ public class Climber extends SubsystemBase {
 
   public Climber() {
     ClimbCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 6, 7);
-    ClimbCylinders.set(Value.kForward);
+    ClimbCylinders.set(Value.kOff);
     HookCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 4, 5);
-    ClimbCylinders.set(Value.kForward);
+    HookCylinders.set(Value.kForward);
   }
 
   public void ArmOut() {

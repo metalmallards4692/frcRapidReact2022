@@ -24,14 +24,17 @@ public class IndexWithStopper extends CommandBase {
   @Override
   public void execute() {
     IR = Robot.indexer.getSensor().getProximity();
-    if (IR >= 1000) {
+    /*
+    if (IR >= 200) {
       Robot.indexer.IndexOn(0.0);
     } else { 
-      Robot.indexer.IndexOn(.3);
-    }
+      Robot.indexer.IndexOn(.5);
+    } 
     SmartDashboard.putNumber("Proximity", IR);
   }
-
+*/
+    Robot.indexer.IndexOn(.5);
+  }
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
@@ -41,6 +44,6 @@ public class IndexWithStopper extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return (IR >=150);
   }
 }

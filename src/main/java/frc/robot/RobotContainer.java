@@ -104,7 +104,7 @@ public class RobotContainer {
     gamepadY.whenPressed(new IntakeToggle());
     gamepadL1.whenHeld(new AutoAim());
     gamepadA.whenHeld(new IntakeOn());
-    gamepadR1.whenHeld(new AimAndShoot());
+    gamepadR1.whenHeld(new TimedShoot());
     //gamepadX.whenHeld(new IndexOn());
     gamepadX.whenHeld(new IndexWithStopper());
     gamepadB.whenHeld(new Reverse());
