@@ -24,17 +24,17 @@ public class Intake extends SubsystemBase {
     IntakeCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 2, 3);
     IntakeCylinders.set(Value.kOff);
   }
-  /*
-  public void IntakeOn(Double output) {
+  
+  public void IntakeOnWithStopper(Double output) {
     if (IntakeCylinders.get()==Value.kReverse || IntakeCylinders.get() == Value.kOff) {
       IntakeMotor.set(0.0);
-      TransferMotor.set(output * -1);
+      TransferMotor.set(output * -1 * 0.5);
     } else {
-      IntakeMotor.set(output * -1);
+      IntakeMotor.set(output * -1 );
       TransferMotor.set(output * -1);
     }
   }
-  */
+  
   public void IntakeOn(Double output) {
     IntakeMotor.set(output * -1);
     TransferMotor.set(output * -1);
