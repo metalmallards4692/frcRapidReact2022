@@ -8,15 +8,12 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
-import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class AutoIntake extends CommandBase {
   /** Creates a new AutoIntake. */
-  private final DrivetrainSubsystem m_DrivetrainSubsystem;
   double IR;
-  public AutoIntake(DrivetrainSubsystem m_DrivetrainSubsystem) {
+  public AutoIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
-    this.m_DrivetrainSubsystem = m_DrivetrainSubsystem;
     addRequirements(Robot.intake);
     addRequirements(Robot.indexer);
     addRequirements(RobotContainer.getDrivetrain());
@@ -25,7 +22,7 @@ public class AutoIntake extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    m_DrivetrainSubsystem.zeroGyroscope();
+   RobotContainer.getDrivetrain().zeroGyroscope();
   }
 
   // Called every time the scheduler runs while the command is scheduled.

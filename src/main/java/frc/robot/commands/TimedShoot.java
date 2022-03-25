@@ -20,7 +20,6 @@ public class TimedShoot extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_shooter);
     addRequirements(Robot.indexer);
-    addRequirements(Robot.intake);
   }
 
   // Called when the command is initially scheduled.
