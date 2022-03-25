@@ -19,7 +19,7 @@ public class TwoBallAuto extends SequentialCommandGroup {
                 new TimedShoot(),
                 new AutoIntake(),
                   new ParallelCommandGroup(new TimedAutoAim(),
-                                           new TimedShoot())
+                                           new AutoTimedShoot())
 
     );
   }

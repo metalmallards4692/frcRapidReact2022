@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class TimedShoot extends CommandBase {
+public class AutoTimedShoot extends CommandBase {
   /** Creates a new TimedShoot. */
   private Timer ShootTimer = new Timer();
   private Double index_Power = .5;
@@ -16,7 +16,7 @@ public class TimedShoot extends CommandBase {
   private double val;
 
   
-  public TimedShoot() {
+  public AutoTimedShoot() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_shooter);
     addRequirements(Robot.indexer);
@@ -35,9 +35,9 @@ public class TimedShoot extends CommandBase {
     SHOOT_POWER = Robot.m_shooter.CalculateRPM();
     val = ShootTimer.get();
     if (val < 2) {
-      Robot.m_shooter.ShooterOn(1.0);
+      Robot.m_shooter.ShooterOn(SHOOT_POWER);
     } else {
-      Robot.m_shooter.ShooterOn(1.0);
+      Robot.m_shooter.ShooterOn(SHOOT_POWER);
       Robot.indexer.IndexOn(index_Power);
     }
   }
@@ -52,6 +52,6 @@ public class TimedShoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return (val > 5);
   }
 }
