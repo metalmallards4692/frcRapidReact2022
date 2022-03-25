@@ -70,6 +70,6 @@ public class TimedAutoAim extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (val > 5);
+    return false;
   }
 }

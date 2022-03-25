@@ -23,13 +23,14 @@ public class AutoIntake extends CommandBase {
   @Override
   public void initialize() {
    RobotContainer.getDrivetrain().zeroGyroscope();
+   Robot.intake.IntakeToggle();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     IR = Robot.indexer.getSensor().getProximity();
-    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(.4, 0.0, 0.0));
+    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(-.4, 0.0, 0.0));
     Robot.intake.IntakeOn(1.0);
     Robot.indexer.IndexOn(.3);
   }
@@ -45,6 +46,6 @@ public class AutoIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (IR >= 150);
+    return (IR >= 250);
   }
 }

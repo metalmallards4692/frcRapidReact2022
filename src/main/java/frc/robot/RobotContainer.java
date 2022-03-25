@@ -17,6 +17,7 @@ import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.Lob;
 import frc.robot.commands.Reverse;
 import frc.robot.commands.TimedShoot;
+import frc.robot.commands.TwoBallAuto;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class RobotContainer {
@@ -111,7 +112,7 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new AutoShoot(m_drivetrainSubsystem);
+    return new TwoBallAuto();
   }
 
   public static DrivetrainSubsystem getDrivetrain(){

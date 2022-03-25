@@ -34,7 +34,7 @@ public class Shooter extends SubsystemBase {
 if (distance > 5) {
   RPM = 1.0;
 } else {
-  RPM = distance * .2;
+  RPM = distance * .6;
 }
   return RPM;
 }

@@ -36,7 +36,7 @@ public final class Constants {
   	public static final int leftJoystick = 1;
    
    //Limelight Constants
-    public static final double cameraAngleDegrees = 0 ;
+    public static final double cameraAngleDegrees = 30 ;
     public static final double goalHeightMeters = 2.6416;
     public static final double cameraHeightMeters = 1.1049;
 

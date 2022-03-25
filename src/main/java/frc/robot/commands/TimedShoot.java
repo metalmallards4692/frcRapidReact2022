@@ -11,7 +11,7 @@ import frc.robot.Robot;
 public class TimedShoot extends CommandBase {
   /** Creates a new TimedShoot. */
   private Timer ShootTimer = new Timer();
-  private Double index_Power = .3;
+  private Double index_Power = .5;
   private double SHOOT_POWER;
   private double val;
 
@@ -34,10 +34,10 @@ public class TimedShoot extends CommandBase {
   public void execute() {
     SHOOT_POWER = Robot.m_shooter.CalculateRPM();
     val = ShootTimer.get();
-    if (val < .5) {
-      Robot.m_shooter.ShooterOn(SHOOT_POWER);
+    if (val < 2) {
+      Robot.m_shooter.ShooterOn(1.0);
     } else {
-      Robot.m_shooter.ShooterOn(SHOOT_POWER);
+      Robot.m_shooter.ShooterOn(1.0);
       Robot.indexer.IndexOn(index_Power);
     }
   }
@@ -52,6 +52,6 @@ public class TimedShoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (val > 3);
+    return (val > 4);
   }
 }
