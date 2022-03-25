@@ -6,7 +6,6 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.Robot;
 
 public class TimedShoot extends CommandBase {
@@ -14,6 +13,7 @@ public class TimedShoot extends CommandBase {
   private Timer ShootTimer = new Timer();
   private Double index_Power = .3;
   private double SHOOT_POWER;
+  private double val;
 
   
   public TimedShoot() {
@@ -34,7 +34,7 @@ public class TimedShoot extends CommandBase {
   @Override
   public void execute() {
     SHOOT_POWER = Robot.m_shooter.CalculateRPM();
-    Double val = ShootTimer.get();
+    val = ShootTimer.get();
     if (val < .5) {
       Robot.m_shooter.ShooterOn(SHOOT_POWER);
     } else {
@@ -53,6 +53,6 @@ public class TimedShoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return (val > 3);
   }
 }

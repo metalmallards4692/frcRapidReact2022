@@ -41,7 +41,7 @@ public final class Constants {
     public static final double cameraHeightMeters = 1.1049;
 
     //Distance
-    public static double distance;
+    public static double distance = 3.0;
     public static double rpm;
    
   //Joystick Buttons
