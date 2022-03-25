@@ -17,6 +17,7 @@ import frc.robot.commands.IntakeToggle;
 import frc.robot.commands.Lob;
 import frc.robot.commands.Reverse;
 import frc.robot.commands.TimedShoot;
+import frc.robot.commands.Shoot;
 import frc.robot.commands.TwoBallAuto;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
@@ -32,7 +33,7 @@ public class RobotContainer {
 
  //Joystick
  public final Joystick leftJoy = new Joystick(Constants.leftJoystick);
- public final Joystick rightJoy = new Joystick(Constants.rightJoystick);
+ public final static Joystick rightJoy = new Joystick(Constants.rightJoystick);
  //Joystick button
    public JoystickButton rTrigger;
    public JoystickButton lTrigger;
@@ -102,7 +103,7 @@ public class RobotContainer {
     gamepadY.whenPressed(new IntakeToggle());
     gamepadL1.whenHeld(new AutoAim());
     gamepadA.whenHeld(new IntakeOn());
-    gamepadR1.whenHeld(new TimedShoot());
+    gamepadR1.whenHeld(new Shoot());
     //gamepadX.whenHeld(new IndexOn());
     gamepadX.whenHeld(new IndexWithStopper());
     gamepadB.whenHeld(new Reverse());
@@ -130,7 +131,7 @@ public class RobotContainer {
       return 0.0;
     }
   }
-  private static double modifyAxis(double value) {
+  public static double modifyAxis(double value) {
     // Deadband
     value = deadband(value, 0.05);
 

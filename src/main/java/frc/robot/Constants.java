@@ -43,6 +43,9 @@ public final class Constants {
     //Distance
     public static double distance = 3.0;
     public static double rpm;
+
+    //Auto Junk
+    public static double SpeedMax;
    
   //Joystick Buttons
     public static int JoystickTriggerR = 1;
