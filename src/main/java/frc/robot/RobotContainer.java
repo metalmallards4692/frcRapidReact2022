@@ -8,6 +8,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ArmIn;
 import frc.robot.commands.ArmOut;
 import frc.robot.commands.AutoAim;
+import frc.robot.commands.AutoAimAndDrive;
 import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.HookToggle;
@@ -102,9 +103,9 @@ public class RobotContainer {
 
     //Gamepad Functions
     gamepadY.whenPressed(new IntakeToggle());
-    gamepadL1.whenHeld(new AutoAim());
+    gamepadL1.whenHeld(new AutoAimAndDrive());
     gamepadA.whenHeld(new IntakeOnWithStopper());
-    gamepadR1.whenHeld(new Shoot());
+    gamepadR1.whenHeld(new TimedShoot());
     //gamepadX.whenHeld(new IndexOn());
     gamepadX.whenHeld(new IndexWithStopper());
     gamepadB.whenHeld(new Reverse());

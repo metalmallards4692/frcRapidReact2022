@@ -16,7 +16,7 @@ public class AutoAimAndDrive extends CommandBase {
   private double kpDistance = 0.05;
   private double m_moveValue;
   private double m_rotateValue;
-  private double min_command = 0.05;
+  private double min_command = 1;
 
   public AutoAimAndDrive() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -36,12 +36,23 @@ public class AutoAimAndDrive extends CommandBase {
     boolean targetFound = RobotContainer.getDrivetrain().gLimeLight().getIsTargetFound();
 
     if(targetFound==true){
-      m_moveValue = ty * kpDistance * -1 - min_command;
-      m_rotateValue = tx * kpAim * -1 - min_command;
-    } else {
+      m_moveValue = ty * kpDistance * -1;
+      m_rotateValue = tx * kpAim * -1;
+    } else if (targetFound==true && tx < min_command) {
+      m_moveValue = ty * kpDistance * -1;
+      m_rotateValue = 0.0;
+    } else if (targetFound==true && ty < min_command) {
       m_moveValue = 0.0;
-      m_rotateValue = 0.4;
+      m_rotateValue = tx * kpAim * -1;
+    } else if (targetFound==true && ty < min_command && tx < min_command) {
+      m_moveValue = 0.0;
+      m_rotateValue = 0.0;
+    } else if(targetFound==false) {
+      m_moveValue = 0.0;
+      m_rotateValue = .3;
     }
+
+
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(m_moveValue, (RobotContainer.modifyAxis(RobotContainer.rightJoy.getX())), m_rotateValue));
     SmartDashboard.putNumber("X Error", RobotContainer.getDrivetrain().gLimeLight().getdegRotationToTarget());
     SmartDashboard.putNumber("Y Error", RobotContainer.getDrivetrain().gLimeLight().getdegVerticalToTarget());

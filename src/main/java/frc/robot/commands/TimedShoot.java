@@ -32,12 +32,12 @@ public class TimedShoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SHOOT_POWER = Robot.m_shooter.CalculateRPM();
+    //SHOOT_POWER = Robot.m_shooter.CalculateRPM();
     val = ShootTimer.get();
-    if (val < 2) {
-      Robot.m_shooter.ShooterOn(1.0);
+    if (val < .5) {
+      Robot.m_shooter.ShooterOn(.5);
     } else {
-      Robot.m_shooter.ShooterOn(1.0);
+      Robot.m_shooter.ShooterOn(.5);
       Robot.indexer.IndexOn(index_Power);
     }
   }

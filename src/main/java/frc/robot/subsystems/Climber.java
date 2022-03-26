@@ -27,6 +27,9 @@ public class Climber extends SubsystemBase {
   public void ArmIn() {
     ClimbCylinders.set(DoubleSolenoid.Value.kReverse);
   }
+  public void ArmOff() {
+    ClimbCylinders.set(DoubleSolenoid.Value.kOff);
+  }
 /*
   public void HookToggle() {
     if (HookCylinders.get()==Value.kReverse || HookCylinders.get() == Value.kOff) {
