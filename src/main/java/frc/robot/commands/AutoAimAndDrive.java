@@ -7,18 +7,16 @@ package frc.robot.commands;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Constants;
 import frc.robot.RobotContainer;
+import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class AutoAimAndDrive extends CommandBase {
-  /** Creates a new AutoAim. */
-  private double kpAim = 0.05;
-  private double kpDistance = 0.05;
+  private double kpAim = -0.1;
+  private double kpDistance = -0.1;
   private double m_moveValue;
   private double m_rotateValue;
-  private double min_command = 1;
-
-  public AutoAimAndDrive() {
+  private double min_command = 0.1;
+  public AutoAimAndDrive(DrivetrainSubsystem m_DrivetrainSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(RobotContainer.getDrivetrain());
   }
@@ -34,26 +32,36 @@ public class AutoAimAndDrive extends CommandBase {
     double tx = RobotContainer.getDrivetrain().gLimeLight().getdegRotationToTarget();
     double ty = RobotContainer.getDrivetrain().gLimeLight().getdegVerticalToTarget();
     boolean targetFound = RobotContainer.getDrivetrain().gLimeLight().getIsTargetFound();
-
-    if(targetFound==true){
-      m_moveValue = ty * kpDistance * -1;
-      m_rotateValue = tx * kpAim * -1;
+    //Old Limelight Code - Was wonky
+/*
+    if(targetFound==false) {
+      m_moveValue = 0.0;
+      m_rotateValue = .3;
+    } else if (targetFound==true && ty < min_command && tx < min_command) {
+      m_moveValue = 0.0;
+      m_rotateValue = 0.0;
     } else if (targetFound==true && tx < min_command) {
       m_moveValue = ty * kpDistance * -1;
       m_rotateValue = 0.0;
     } else if (targetFound==true && ty < min_command) {
       m_moveValue = 0.0;
       m_rotateValue = tx * kpAim * -1;
-    } else if (targetFound==true && ty < min_command && tx < min_command) {
-      m_moveValue = 0.0;
-      m_rotateValue = 0.0;
-    } else if(targetFound==false) {
-      m_moveValue = 0.0;
-      m_rotateValue = .3;
+    } else if(targetFound==true){
+      m_moveValue = ty * kpDistance * -1;
+      m_rotateValue = tx * kpAim * -1;
+    } 
+
+*/ //new limelight code from their website
+    if (targetFound==true && tx > 1.0) {
+      m_rotateValue = tx * kpAim - min_command;
+    } else if (targetFound==true && tx < 1.0) {
+      m_rotateValue = tx * kpAim + min_command;
+    } else {
+      m_rotateValue = .6;
     }
+     m_moveValue = kpDistance * ty;
 
-
-    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(m_moveValue, (RobotContainer.modifyAxis(RobotContainer.rightJoy.getX())), m_rotateValue));
+    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(m_moveValue, (RobotContainer.modifyAxis(RobotContainer.rightJoy.getX() * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND )), m_rotateValue));
     SmartDashboard.putNumber("X Error", RobotContainer.getDrivetrain().gLimeLight().getdegRotationToTarget());
     SmartDashboard.putNumber("Y Error", RobotContainer.getDrivetrain().gLimeLight().getdegVerticalToTarget());
   }

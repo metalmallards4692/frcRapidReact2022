@@ -103,7 +103,7 @@ public class RobotContainer {
 
     //Gamepad Functions
     gamepadY.whenPressed(new IntakeToggle());
-    gamepadL1.whenHeld(new AutoAimAndDrive());
+    gamepadL1.whenHeld(new AutoAimAndDrive(m_drivetrainSubsystem));
     gamepadA.whenHeld(new IntakeOnWithStopper());
     gamepadR1.whenHeld(new TimedShoot());
     //gamepadX.whenHeld(new IndexOn());
