@@ -8,6 +8,7 @@ import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class AutoAim extends CommandBase {
@@ -22,15 +23,6 @@ public class AutoAim extends CommandBase {
     addRequirements(RobotContainer.getDrivetrain());
   }
 
-public double estimateDis() {
-  double cot = cotan(Constants.cameraAngleDegrees + RobotContainer.getDrivetrain().gLimeLight().getdegVerticalToTarget());
-  return cot * (Constants.goalHeightMeters - Constants.cameraHeightMeters);
-}
-
-public double cotan(double aDegrees) {
-  return Math.cos(Math.toRadians(aDegrees))/Math.sin(Math.toRadians(aDegrees));
-}
-
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
@@ -40,10 +32,9 @@ public double cotan(double aDegrees) {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double tx = RobotContainer.getDrivetrain().gLimeLight().getdegRotationToTarget();
+    double tx = Robot.visioncamera.gLimeLight().getdegRotationToTarget();
     //double ty = RobotContainer.getDrivetrain().gLimeLight().getdegVerticalToTarget();
-    boolean targetFound = RobotContainer.getDrivetrain().gLimeLight().getIsTargetFound();
-    Constants.distance = estimateDis();
+    boolean targetFound = Robot.visioncamera.gLimeLight().getIsTargetFound();
 
     if(targetFound==true){
       //m_moveValue = ty * kpDistance;
@@ -54,7 +45,7 @@ public double cotan(double aDegrees) {
     }
 
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, m_rotateValue));
-    SmartDashboard.putNumber("X Error", RobotContainer.getDrivetrain().gLimeLight().getdegRotationToTarget());
+    SmartDashboard.putNumber("X Error", Robot.visioncamera.gLimeLight().getdegRotationToTarget());
     SmartDashboard.putNumber("Distance", Constants.distance);
   }
 

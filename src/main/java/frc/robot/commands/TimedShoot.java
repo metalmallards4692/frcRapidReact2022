@@ -12,7 +12,7 @@ public class TimedShoot extends CommandBase {
   /** Creates a new TimedShoot. */
   private Timer ShootTimer = new Timer();
   private Double index_Power = .5;
-  private double SHOOT_POWER;
+  private double SHOOT_POWER = .5;
   private double val;
 
   
@@ -35,9 +35,9 @@ public class TimedShoot extends CommandBase {
     //SHOOT_POWER = Robot.m_shooter.CalculateRPM();
     val = ShootTimer.get();
     if (val < .5) {
-      Robot.m_shooter.ShooterOn(.5);
+      Robot.m_shooter.ShooterOn(SHOOT_POWER);
     } else {
-      Robot.m_shooter.ShooterOn(.5);
+      Robot.m_shooter.ShooterOn(SHOOT_POWER);
       Robot.indexer.IndexOn(index_Power);
     }
   }

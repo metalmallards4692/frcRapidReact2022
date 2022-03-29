@@ -13,6 +13,7 @@ import edu.wpi.first.math.geometry.Translation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.shuffleboard.BuiltInLayouts;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -26,7 +27,7 @@ import static frc.robot.Constants.*;
 
 public class DrivetrainSubsystem extends SubsystemBase {
         
-private LimeLight _limelight;
+
 
   public static final double MAX_VOLTAGE = 12.0;
  
@@ -61,7 +62,6 @@ private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connect
   private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
   
   public DrivetrainSubsystem() {
-        _limelight = new LimeLight();
         final ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
 
     m_frontLeftModule = Mk3SwerveModuleHelper.createNeo(
@@ -147,9 +147,7 @@ private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connect
     m_chassisSpeeds = chassisSpeeds;
   }
   
-  public LimeLight gLimeLight(){
-        return _limelight;
-    }
+  
   
   @Override
   public void periodic() {

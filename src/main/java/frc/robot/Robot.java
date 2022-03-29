@@ -15,6 +15,7 @@ import frc.robot.subsystems.Climber;
 import frc.robot.subsystems.Indexer;
 import frc.robot.subsystems.Intake;
 import frc.robot.subsystems.Shooter;
+import frc.robot.subsystems.VisionCamera;
 
 /**
  * The VM is configured to automatically run this class, and to call the functions corresponding to
@@ -31,6 +32,7 @@ private Command m_autonomousCommand;
   public static Climber climber = new Climber();
   public static Indexer indexer = new Indexer();
   public static Intake intake = new Intake();
+  public static VisionCamera visioncamera = new VisionCamera();
 
   public static PneumaticHub hub = new PneumaticHub(3);
   public static PowerDistribution powerhub = new PowerDistribution(1, PowerDistribution.ModuleType.kRev);

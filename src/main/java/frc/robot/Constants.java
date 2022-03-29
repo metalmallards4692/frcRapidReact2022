@@ -36,9 +36,14 @@ public final class Constants {
   	public static final int leftJoystick = 1;
    
    //Limelight Constants
-    public static final double cameraAngleDegrees = 30 ;
-    public static final double goalHeightMeters = 2.6416;
-    public static final double cameraHeightMeters = 1.1049;
+    public static final double CAMERA_ANGLE = 30 ;
+    public static final double TARGET_HEIGHT = 2.6416;
+    public static final double CAMERA_HEIGHT = 1.1049;
+    public static final int LED_ON = 3;
+    public static final int LED_OFF = 1;
+    public static final int TARGET_PIPELINE = 0;
+    public static final int DEFAULT_PIPELINE = 0;
+    public static final int DRIVE_PIPELINE = 2;
 
     //Distance
     public static double distance = 3.0;

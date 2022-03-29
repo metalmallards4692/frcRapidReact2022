@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class TimedAutoAim extends CommandBase {
@@ -22,15 +23,8 @@ public class TimedAutoAim extends CommandBase {
 
   public TimedAutoAim() {
     addRequirements(RobotContainer.getDrivetrain());
+    addRequirements(Robot.visioncamera);
     // Use addRequirements() here to declare subsystem dependencies.
-  }
-  public double estimateDis() {
-    double cot = cotan(Constants.cameraAngleDegrees + RobotContainer.getDrivetrain().gLimeLight().getdegVerticalToTarget());
-    return cot * (Constants.goalHeightMeters - Constants.cameraHeightMeters);
-  }
-  
-  public double cotan(double aDegrees) {
-    return Math.cos(Math.toRadians(aDegrees))/Math.sin(Math.toRadians(aDegrees));
   }
   // Called when the command is initially scheduled.
   @Override
@@ -43,10 +37,9 @@ public class TimedAutoAim extends CommandBase {
   @Override
   public void execute() {
     val = ShootTimer.get();
-    double tx = RobotContainer.getDrivetrain().gLimeLight().getdegRotationToTarget();
+    double tx = Robot.visioncamera.gLimeLight().getdegRotationToTarget();
     //double ty = RobotContainer.getDrivetrain().gLimeLight().getdegVerticalToTarget();
-    boolean targetFound = RobotContainer.getDrivetrain().gLimeLight().getIsTargetFound();
-    Constants.distance = estimateDis();
+    boolean targetFound = Robot.visioncamera.gLimeLight().getIsTargetFound();
 
     if(targetFound==true){
       //m_moveValue = ty * kpDistance;
@@ -57,7 +50,7 @@ public class TimedAutoAim extends CommandBase {
     }
 
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, m_rotateValue));
-    SmartDashboard.putNumber("X Error", RobotContainer.getDrivetrain().gLimeLight().getdegRotationToTarget());
+    SmartDashboard.putNumber("X Error", Robot.visioncamera.gLimeLight().getdegRotationToTarget());
     SmartDashboard.putNumber("Distance", Constants.distance);
   }
 
