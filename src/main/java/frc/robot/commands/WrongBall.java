@@ -7,27 +7,33 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
-public class Lob extends CommandBase {
-  /** Creates a new Lob. */
-  public Lob() {
+public class WrongBall extends CommandBase {
+  /** Creates a new WrongBall. */
+  public WrongBall() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_shooter);
+    addRequirements(Robot.indexer);
   }
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    Robot.m_shooter.HoodToggle();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.m_shooter.ShooterOn(.1);
+    Robot.indexer.IndexOn(.5);
+    Robot.m_shooter.ShooterOn(.2);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    Robot.indexer.IndexOn(0.0);
     Robot.m_shooter.ShooterOn(0.0);
+    Robot.m_shooter.HoodToggle();
   }
 
   // Returns true when the command should end.

@@ -7,20 +7,17 @@ import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ArmIn;
 import frc.robot.commands.ArmOut;
-import frc.robot.commands.AutoAim;
 import frc.robot.commands.AutoAimAndDrive;
-import frc.robot.commands.AutoShoot;
 import frc.robot.commands.DefaultDriveCommand;
+import frc.robot.commands.FenderShot;
 import frc.robot.commands.HookToggle;
 import frc.robot.commands.IndexWithStopper;
-import frc.robot.commands.IntakeOn;
 import frc.robot.commands.IntakeOnWithStopper;
 import frc.robot.commands.IntakeToggle;
-import frc.robot.commands.Lob;
 import frc.robot.commands.Reverse;
 import frc.robot.commands.TimedShoot;
-import frc.robot.commands.Shoot;
 import frc.robot.commands.TwoBallAuto;
+import frc.robot.commands.WrongBall;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class RobotContainer {
@@ -106,10 +103,10 @@ public class RobotContainer {
     gamepadL1.whenHeld(new AutoAimAndDrive(m_drivetrainSubsystem));
     gamepadA.whenHeld(new IntakeOnWithStopper());
     gamepadR1.whenHeld(new TimedShoot());
-    //gamepadX.whenHeld(new IndexOn());
     gamepadX.whenHeld(new IndexWithStopper());
     gamepadB.whenHeld(new Reverse());
-    gamepadR3.whenHeld(new Lob());
+    gamepadR3.whenHeld(new FenderShot());
+    gamepadL3.whenHeld(new WrongBall());
 
     
   }

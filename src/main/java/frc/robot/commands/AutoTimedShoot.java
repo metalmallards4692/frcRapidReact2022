@@ -12,7 +12,7 @@ public class AutoTimedShoot extends CommandBase {
   /** Creates a new TimedShoot. */
   private Timer ShootTimer = new Timer();
   private Double index_Power = .5;
-  private double SHOOT_POWER;
+  private double SHOOT_POWER = .5;
   private double val;
 
   
@@ -32,7 +32,6 @@ public class AutoTimedShoot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    SHOOT_POWER = Robot.m_shooter.CalculateRPM();
     val = ShootTimer.get();
     if (val < 2) {
       Robot.m_shooter.ShooterOn(SHOOT_POWER);
@@ -52,6 +51,6 @@ public class AutoTimedShoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (val > 5);
+    return (val > 3);
   }
 }
