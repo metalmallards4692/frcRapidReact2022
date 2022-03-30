@@ -42,13 +42,13 @@ public class AutoAimAndDrive extends CommandBase {
     } else if (targetFound==true && tx < 1.0) {
       m_rotateValue = tx * kpAim;
     } else {
-      m_rotateValue = 1.0;
+      m_rotateValue = RobotContainer.modifyAxis(RobotContainer.rightJoy.getZ()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND * -.5;
     }
      m_moveValue = ty * kpDistance;
      m_moveValue = MathUtil.applyDeadband(m_moveValue, .1);
      m_rotateValue = MathUtil.applyDeadband(m_rotateValue, .1);
 
-    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(m_moveValue, (RobotContainer.modifyAxis(RobotContainer.rightJoy.getX() * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND ) * -1), m_rotateValue));
+    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(m_moveValue, (RobotContainer.modifyAxis(RobotContainer.rightJoy.getX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND * -1), m_rotateValue));
     SmartDashboard.putNumber("X Error", Robot.visioncamera.gLimeLight().getdegRotationToTarget());
     SmartDashboard.putNumber("Y Error", Robot.visioncamera.gLimeLight().getdegVerticalToTarget());
   }

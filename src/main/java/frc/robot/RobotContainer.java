@@ -5,8 +5,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.Command;
 //import edu.wpi.first.wpilibj2.command.InstantCommand;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
-import frc.robot.commands.ArmIn;
-import frc.robot.commands.ArmOut;
+import frc.robot.commands.ArmDown;
+import frc.robot.commands.ArmUp;
 import frc.robot.commands.AutoAimAndDrive;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.FenderShot;
@@ -92,8 +92,8 @@ public class RobotContainer {
    
     //Joystick Functions
     rBottom.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
-    lOutside.whenPressed(new ArmOut());
-    lInside.whenPressed(new ArmIn());
+    lOutside.whenPressed(new ArmUp());
+    lInside.whenPressed(new ArmDown());
     lTrigger.whenPressed(new HookToggle());
 
     

@@ -15,10 +15,11 @@ public class TwoBallAuto extends SequentialCommandGroup {
   public TwoBallAuto() {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
-    addCommands(new AutoTimedShoot(),
-                new AutoIntake(),
-                  new ParallelCommandGroup(new TimedAutoAim(),
-                                           new AutoTimedShoot())
+    addCommands(new ParallelCommandGroup(new AutoTimedShoot(),
+                                         new ShortTimedAutoAim()),
+                                         new AutoIntake(),
+                new ParallelCommandGroup(new TimedAutoAim(),
+                                         new AutoTimedShoot())
 
     );
   }

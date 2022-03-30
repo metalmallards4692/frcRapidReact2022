@@ -13,14 +13,14 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.math.MathUtil;
 
-public class TimedAutoAim extends CommandBase {
+public class ShortTimedAutoAim extends CommandBase {
   private double kpAim = -0.1;
   private double kpDistance = -0.1;
   private double m_moveValue;
   private double m_rotateValue;
   private Timer ShootTimer = new Timer();
   private double val;
-  public TimedAutoAim() {
+  public ShortTimedAutoAim() {
 
     addRequirements(RobotContainer.getDrivetrain());
     addRequirements(Robot.visioncamera);
@@ -68,6 +68,6 @@ public class TimedAutoAim extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (val > 4);
+    return (val > 2);
   }
 }
