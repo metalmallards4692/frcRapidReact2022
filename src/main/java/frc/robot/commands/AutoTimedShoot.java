@@ -51,6 +51,6 @@ public class AutoTimedShoot extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (val > 3);
+    return (val > 4);
   }
 }

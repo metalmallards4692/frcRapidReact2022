@@ -13,8 +13,8 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.math.MathUtil;
 
 public class AutoAimAndDrive extends CommandBase {
-  private double kpAim = -0.05;
-  private double kpDistance = -0.05;
+  private double kpAim = -0.1;
+  private double kpDistance = -0.1;
   private double m_moveValue;
   private double m_rotateValue;
  // private double min_command = 0.1;
@@ -42,13 +42,13 @@ public class AutoAimAndDrive extends CommandBase {
     } else if (targetFound==true && tx < 1.0) {
       m_rotateValue = tx * kpAim;
     } else {
-      m_rotateValue = .6;
+      m_rotateValue = 1.0;
     }
      m_moveValue = ty * kpDistance;
      m_moveValue = MathUtil.applyDeadband(m_moveValue, .1);
      m_rotateValue = MathUtil.applyDeadband(m_rotateValue, .1);
 
-    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(m_moveValue, (RobotContainer.modifyAxis(RobotContainer.rightJoy.getX() * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND )), m_rotateValue));
+    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(m_moveValue, (RobotContainer.modifyAxis(RobotContainer.rightJoy.getX() * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND ) * -1), m_rotateValue));
     SmartDashboard.putNumber("X Error", Robot.visioncamera.gLimeLight().getdegRotationToTarget());
     SmartDashboard.putNumber("Y Error", Robot.visioncamera.gLimeLight().getdegVerticalToTarget());
   }

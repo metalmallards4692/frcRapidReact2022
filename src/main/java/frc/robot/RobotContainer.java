@@ -105,8 +105,8 @@ public class RobotContainer {
     gamepadR1.whenHeld(new TimedShoot());
     gamepadX.whenHeld(new IndexWithStopper());
     gamepadB.whenHeld(new Reverse());
-    gamepadR3.whenHeld(new FenderShot());
-    gamepadL3.whenHeld(new WrongBall());
+    gamepadL3.whenHeld(new FenderShot());
+    gamepadR3.whenHeld(new WrongBall());
 
     
   }

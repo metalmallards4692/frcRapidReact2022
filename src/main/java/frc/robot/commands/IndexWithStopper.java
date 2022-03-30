@@ -33,7 +33,7 @@ public class IndexWithStopper extends CommandBase {
     SmartDashboard.putNumber("Proximity", IR);
   }
 */
-    Robot.indexer.IndexOn(.5);
+    Robot.indexer.IndexOn(.4);
     SmartDashboard.putNumber("Proximity", IR);
   }
   // Called once the command ends or is interrupted.

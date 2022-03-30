@@ -30,7 +30,7 @@ public class AutoIntake extends CommandBase {
   @Override
   public void execute() {
     IR = Robot.indexer.getSensor().getProximity();
-    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(-.4, 0.0, 0.0));
+    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(-.5, 0.0, 0.0));
     Robot.intake.IntakeOn(1.0);
     Robot.indexer.IndexOn(.3);
   }

@@ -25,7 +25,7 @@ public class FenderShot extends CommandBase {
   @Override
   public void execute() {
     Robot.indexer.IndexOn(.5);
-    Robot.m_shooter.ShooterOn(.5);
+    Robot.m_shooter.ShooterOn(.6);
   }
 
   // Called once the command ends or is interrupted.
