@@ -28,6 +28,7 @@ public class TimedAutoAim extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.visioncamera.switchPipeline(true);
     Robot.visioncamera.setLedOn(true);
     ShootTimer.reset();
     ShootTimer.start();
@@ -47,7 +48,7 @@ public class TimedAutoAim extends CommandBase {
     } else if (targetFound==true && tx < 1.0) {
       m_rotateValue = tx * kpAim;
     } else {
-      m_rotateValue = .6;
+      
     }
      m_moveValue = ty * kpDistance;
      m_moveValue = MathUtil.applyDeadband(m_moveValue, .1);
@@ -62,6 +63,7 @@ public class TimedAutoAim extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, 0.0));
+    Robot.visioncamera.switchPipeline(false);
     Robot.visioncamera.setLedOn(false);
   }
 

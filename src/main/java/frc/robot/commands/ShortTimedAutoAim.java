@@ -28,6 +28,7 @@ public class ShortTimedAutoAim extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    Robot.visioncamera.switchPipeline(true);
     Robot.visioncamera.setLedOn(true);
     ShootTimer.reset();
     ShootTimer.start();
@@ -37,8 +38,8 @@ public class ShortTimedAutoAim extends CommandBase {
   @Override
   public void execute() {
     val = ShootTimer.get();
-    double tx = Robot.visioncamera.gLimeLight().getdegRotationToTarget();
-    double ty = Robot.visioncamera.gLimeLight().getdegVerticalToTarget();
+    double tx = MathUtil.applyDeadband(Robot.visioncamera.gLimeLight().getdegRotationToTarget(), .2);
+    double ty = MathUtil.applyDeadband(Robot.visioncamera.gLimeLight().getdegVerticalToTarget(), .2);
     boolean targetFound = Robot.visioncamera.gLimeLight().getIsTargetFound();
 
  //new limelight code from their website
@@ -47,11 +48,11 @@ public class ShortTimedAutoAim extends CommandBase {
     } else if (targetFound==true && tx < 1.0) {
       m_rotateValue = tx * kpAim;
     } else {
-      m_rotateValue = .6;
+      m_rotateValue = RobotContainer.modifyAxis(RobotContainer.rightJoy.getZ()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND * -.5;
     }
      m_moveValue = ty * kpDistance;
-     m_moveValue = MathUtil.applyDeadband(m_moveValue, .1);
-     m_rotateValue = MathUtil.applyDeadband(m_rotateValue, .1);
+     //m_moveValue = MathUtil.applyDeadband(m_moveValue, .1);
+     //m_rotateValue = MathUtil.applyDeadband(m_rotateValue, .1);
 
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(m_moveValue, (RobotContainer.modifyAxis(RobotContainer.rightJoy.getX() * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND )), m_rotateValue));
     SmartDashboard.putNumber("X Error", Robot.visioncamera.gLimeLight().getdegRotationToTarget());
@@ -62,6 +63,7 @@ public class ShortTimedAutoAim extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, 0.0));
+    Robot.visioncamera.switchPipeline(false);
     Robot.visioncamera.setLedOn(false);
   }
 
