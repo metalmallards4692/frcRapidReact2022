@@ -58,6 +58,9 @@ public void HoodToggle() {
     HoodCylinder.set(Value.kForward);
   }
 }
+public void HoodUp() {
+  HoodCylinder.set(Value.kForward);
+}
 
 public void AutoShoot(Double output) {
   ShooterMotor1.set(output * -1 / 2);

@@ -22,7 +22,7 @@ public class TwoBallAuto extends SequentialCommandGroup {
                                          new AutoTimedShoot()),
                                          new IntakeToggle(),
                                          new TimedDriveBackwards()
-
+                                      
 
     );
   }

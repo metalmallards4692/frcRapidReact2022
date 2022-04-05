@@ -5,12 +5,15 @@
 package frc.robot.commands;
 
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class AutoIntake extends CommandBase {
   /** Creates a new AutoIntake. */
+  private Timer ShootTimer = new Timer();
+  private double val;
   double IR;
   public AutoIntake() {
     // Use addRequirements() here to declare subsystem dependencies.
@@ -24,11 +27,14 @@ public class AutoIntake extends CommandBase {
   public void initialize() {
    RobotContainer.getDrivetrain().zeroGyroscope();
    Robot.intake.IntakeToggle();
+   ShootTimer.reset();
+   ShootTimer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    val = ShootTimer.get();
     IR = Robot.indexer.getSensor().getProximity();
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(-.5, 0.0, 0.0));
     Robot.intake.IntakeOn(1.0);
@@ -46,6 +52,6 @@ public class AutoIntake extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return (IR >= 250);
+    return (IR >= 250 || val >5);
   }
 }

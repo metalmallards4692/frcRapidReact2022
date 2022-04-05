@@ -24,8 +24,8 @@ public class FenderShot extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.indexer.IndexOn(.5);
-    Robot.m_shooter.ShooterOn(.4);
+  Robot.indexer.IndexOn(.5);
+   Robot.m_shooter.ShooterOn(.4);
   }
 
   // Called once the command ends or is interrupted.

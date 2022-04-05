@@ -4,41 +4,43 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.math.kinematics.ChassisSpeeds;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.Robot;
+import frc.robot.RobotContainer;
 
-public class WrongBall extends CommandBase {
-  /** Creates a new WrongBall. */
-  public WrongBall() {
+public class DriveBackwards extends CommandBase {
+  /** Creates a new DriveBackwards. */
+  private Timer ShootTimer = new Timer();
+  private double val;
+  public DriveBackwards() {
+    addRequirements(RobotContainer.getDrivetrain());
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(Robot.m_shooter);
-    addRequirements(Robot.indexer);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    Robot.m_shooter.HoodToggle();
+    ShootTimer.reset();
+    ShootTimer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    Robot.indexer.IndexOn(.3);
-    Robot.m_shooter.ShooterOn(.3);
+    val = ShootTimer.get();
+    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(.5, 0.0, 0.0));
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    Robot.indexer.IndexOn(0.0);
-    Robot.m_shooter.ShooterOn(0.0);
-    Robot.m_shooter.HoodToggle();
+    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(.5, 0.0, 0.0));
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    return (val == 5);
   }
 }

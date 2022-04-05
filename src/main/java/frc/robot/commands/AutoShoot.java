@@ -14,7 +14,7 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 public class AutoShoot extends CommandBase {
   private final DrivetrainSubsystem m_DrivetrainSubsystem;
   private Timer ShootTimer = new Timer();
-  private Double Shooter_Power = .42;
+  private Double Shooter_Power = .48;
   private Double index_Power = .3;
   /** Creates a new AutoShoot. */
   public AutoShoot(DrivetrainSubsystem m_DrivetrainSubsystem) {
