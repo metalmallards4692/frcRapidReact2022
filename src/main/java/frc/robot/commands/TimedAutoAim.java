@@ -14,18 +14,21 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.math.MathUtil;
 
 public class TimedAutoAim extends CommandBase {
+//Declares a bunch of varibles and creates a timer object
   private double kpAim = -0.1;
   private double kpDistance = -0.1;
   private double m_moveValue;
   private double m_rotateValue;
   private Timer ShootTimer = new Timer();
   private double val;
-  public TimedAutoAim() {
 
+  public TimedAutoAim() {
+//Requires these subsystems
     addRequirements(RobotContainer.getDrivetrain());
     addRequirements(Robot.visioncamera);
   }
-  // Called when the command is initially scheduled.
+
+  //When command is first called, switch to targeting pipeline and turn on LEDS for limelight. Also reset and start up the timer counter.
   @Override
   public void initialize() {
     Robot.visioncamera.switchPipeline(true);
@@ -34,7 +37,7 @@ public class TimedAutoAim extends CommandBase {
     ShootTimer.start();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  //Each loop, the varibles get updated. 
   @Override
   public void execute() {
     val = ShootTimer.get();
@@ -42,7 +45,7 @@ public class TimedAutoAim extends CommandBase {
     double ty = Robot.visioncamera.gLimeLight().getdegVerticalToTarget();
     boolean targetFound = Robot.visioncamera.gLimeLight().getIsTargetFound();
 
- //new limelight code from their website
+ //Runs varible values through conditional to calucate motor speeds and sets them accordingly
     if (targetFound==true && tx > 1.0) {
       m_rotateValue = tx * kpAim;
     } else if (targetFound==true && tx < 1.0) {
@@ -57,9 +60,11 @@ public class TimedAutoAim extends CommandBase {
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(m_moveValue, (RobotContainer.modifyAxis(RobotContainer.rightJoy.getX() * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND )), m_rotateValue));
     SmartDashboard.putNumber("X Error", Robot.visioncamera.gLimeLight().getdegRotationToTarget());
     SmartDashboard.putNumber("Y Error", Robot.visioncamera.gLimeLight().getdegVerticalToTarget());
+
+  //After looking through this, this uses my old method for getting values and setting them. Not sure why I never updated it but hey... it works i guess.
   }
 
-  // Called once the command ends or is interrupted.
+//Sets motors to zero when command ends and swicthes back to driver pipeline and turns off leds.
   @Override
   public void end(boolean interrupted) {
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, 0.0));
@@ -67,7 +72,7 @@ public class TimedAutoAim extends CommandBase {
     Robot.visioncamera.setLedOn(false);
   }
 
-  // Returns true when the command should end.
+//Ends command when timer reaches 4 seconds.
   @Override
   public boolean isFinished() {
     return (val > 4);

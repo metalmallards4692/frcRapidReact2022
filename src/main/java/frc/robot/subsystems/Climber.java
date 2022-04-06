@@ -10,39 +10,33 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Climber extends SubsystemBase {
+//Declares the names for the double solenoids  
   private DoubleSolenoid ClimbCylinders;
   private DoubleSolenoid HookCylinders;
 
+//Main climber method that will run on robot start
   public Climber() {
+  //Creates doublesolenoid object with the channels 6,7 and sets inital value to off  
     ClimbCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 6, 7);
     ClimbCylinders.set(Value.kOff);
+  //Creates DoubleSolenoid object with the channels 4,5 and sets unital value to forward
     HookCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 4, 5);
     HookCylinders.set(Value.kForward);
   }
-
+//Function to set Cylinder value to forward
   public void ArmOut() {
     ClimbCylinders.set(DoubleSolenoid.Value.kForward);
   }
-  
+//Function to set Cylinder value to reverse 
   public void ArmIn() {
     ClimbCylinders.set(DoubleSolenoid.Value.kReverse);
   }
+//Function to set Cylinder value to off
   public void ArmOff() {
     ClimbCylinders.set(DoubleSolenoid.Value.kOff);
   }
-/*
-  public void HookToggle() {
-    if (HookCylinders.get()==Value.kReverse || HookCylinders.get() == Value.kOff) {
-      HookCylinders.set(Value.kForward);
-    } if (HookCylinders.get()==Value.kForward){
-        HookCylinders.set(Value.kReverse);
-    }
-  }
 
-public void HookOff() {
-  HookCylinders.set(Value.kOff);
-}
-*/
+//Togglable cylinder function. 
 public void HookToggle() {
   DoubleSolenoid.Value val = HookCylinders.get();
   if(val == DoubleSolenoid.Value.kForward) {
@@ -58,6 +52,7 @@ public void HookToggle() {
   public void periodic() {
     // This method will be called once per scheduler run
   }
+//Not sure the difference between this and the inital set command up top but throw it in just in case. When I get back in the shop I will remove this and test what happens to see if it is useful or not
   public void initDefaultCommand() {
     ClimbCylinders.set(Value.kOff);
   }

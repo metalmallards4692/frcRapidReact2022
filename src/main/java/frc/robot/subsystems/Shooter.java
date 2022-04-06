@@ -13,42 +13,27 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
+//This is what is needed to setup a motor so it can be used in a subsystem  
   CANSparkMax ShooterMotor1 = Constants.ShootMotor1;
   CANSparkMax ShooterMotor2 = Constants.ShootMotor2;
+//Delares name of a DoubleSolenoid   
   public DoubleSolenoid HoodCylinder;
-  Double distance;
-  Double RPM;
   
   
   /** Creates a new Shooter. */
   public Shooter() {
+//Creates DoubleSolenoid using constructor method. 3 refers to the devices CAN ID. Next is the brand of PneumaticHub, 0 and 1 are the on/off channels on said Hub    
     HoodCylinder = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 0, 1);
+//Sets initial value for Cylinder when it is created. Usually you want this to be kOff, but I needed the hood to stay up so I made it kForward    
     HoodCylinder.set(Value.kForward);
   }
+//Basic set Motor output to a number. The * -1 inverts the direction the motor is running.   
   public void ShooterOn(double output) {
     ShooterMotor1.set(output * -1);
     ShooterMotor2.set(output * -1); 
  }
- public Double CalculateRPM() {
-  distance = Constants.distance;
-if (distance > 5) {
-  RPM = 1.0;
-} else {
-  RPM = distance * .6;
-}
-  return RPM;
-}
- /*public void HoodToggle() {
-  if (HoodCylinder.get()==Value.kReverse || HoodCylinder.get() == Value.kOff) {
-    HoodCylinder.set(Value.kForward);
-  } if (HoodCylinder.get()==Value.kForward){
-      HoodCylinder.set(Value.kReverse);
-  }
-}
-public void HoodOff() {
-  HoodCylinder.set(Value.kOff);
-}
-*/
+
+//Basic toggle function to change the value of a cylinder. I copy pasted this function with simple name changes for each of the togglable cylinders.
 public void HoodToggle() {
   DoubleSolenoid.Value val = HoodCylinder.get();
   if(val == DoubleSolenoid.Value.kForward) {
@@ -58,14 +43,11 @@ public void HoodToggle() {
     HoodCylinder.set(Value.kForward);
   }
 }
+//All this does is set the value of the Hood to forward because it broke during comp and I needed a way to make it go back up. 
 public void HoodUp() {
   HoodCylinder.set(Value.kForward);
 }
 
-public void AutoShoot(Double output) {
-  ShooterMotor1.set(output * -1 / 2);
-  ShooterMotor2.set(output * -1);
-}
  @Override
  public void periodic() {
     // This method will be called once per scheduler run

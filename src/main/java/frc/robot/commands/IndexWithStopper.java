@@ -9,40 +9,30 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class IndexWithStopper extends CommandBase {
-  /** Creates a new IndexWithStopper. */
+//Declares varible for IR 
   double IR;
   public IndexWithStopper() {
-    // Use addRequirements() here to declare subsystem dependencies.
-   
+//Requires these subsystems
     addRequirements(Robot.indexer);
   }
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
 
-  // Called every time the scheduler runs while the command is scheduled.
+//Updates the varible IR with the current sensor reading from the Color Sensor and sets index motor value to whatever number is set. It also displays the current IR value on smartdashboard for debug purposes
   @Override
   public void execute() {
     IR = Robot.indexer.getSensor().getProximity();
-    /*
-    if (IR >= 200) {
-      Robot.indexer.IndexOn(0.0);
-    } else { 
-      Robot.indexer.IndexOn(.5);
-    } 
-    SmartDashboard.putNumber("Proximity", IR);
-  }
-*/
     Robot.indexer.IndexOn(.4);
     SmartDashboard.putNumber("Proximity", IR);
   }
-  // Called once the command ends or is interrupted.
+//When command ends, set motors to zero
   @Override
   public void end(boolean interrupted) {
     Robot.indexer.IndexOn(0.0);
   }
 
-  // Returns true when the command should end.
+//Ends the command when IR greater than or equal to 250. This means if something goes in front of the sensor, the value will meet this condition and end the command
   @Override
   public boolean isFinished() {
     return (IR >=250);

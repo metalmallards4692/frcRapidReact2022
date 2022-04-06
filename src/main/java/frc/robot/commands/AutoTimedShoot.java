@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class AutoTimedShoot extends CommandBase {
-  /** Creates a new TimedShoot. */
+//Declares varibles and creates timer object
   private Timer ShootTimer = new Timer();
   private Double index_Power = .5;
   private double SHOOT_POWER = .435;
@@ -17,19 +17,19 @@ public class AutoTimedShoot extends CommandBase {
 
   
   public AutoTimedShoot() {
-    // Use addRequirements() here to declare subsystem dependencies.
+//Requires these subsystems
     addRequirements(Robot.m_shooter);
     addRequirements(Robot.indexer);
   }
 
-  // Called when the command is initially scheduled.
+  //Resets and starts the timer when command is first called
   @Override
   public void initialize() {
     ShootTimer.reset();
     ShootTimer.start();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+  //Every loop, varible val gets updated with current time and depending on time, different parts of the IF statements will run
   @Override
   public void execute() {
     val = ShootTimer.get();
@@ -41,14 +41,14 @@ public class AutoTimedShoot extends CommandBase {
     }
   }
 
-  // Called once the command ends or is interrupted.
+  //Set motor values back to zero when command ends
   @Override
   public void end(boolean interrupted) {
     Robot.m_shooter.ShooterOn(0.0);
     Robot.indexer.IndexOn(0.0);
   }
 
-  // Returns true when the command should end.
+  //When timer is greater than four, end command
   @Override
   public boolean isFinished() {
     return (val > 4);

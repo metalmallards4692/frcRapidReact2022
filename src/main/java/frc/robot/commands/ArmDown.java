@@ -10,24 +10,25 @@ import frc.robot.Robot;
 public class ArmDown extends CommandBase {
   /** Creates a new ArmIn. */
   public ArmDown() {
+//Requires Climber Subsystem
     addRequirements(Robot.climber);
   }
 
-  // Called when the command is initially scheduled.
+  //Everything here will only run once when the command is orignally scheduled
   @Override
   public void initialize() {}
 
-  // Called every time the scheduler runs while the command is scheduled.
+  //Everything will run constantly as long as the command is running true
   @Override
   public void execute() {
     Robot.climber.ArmIn();
   }
 
-  // Called once the command ends or is interrupted.
+  //Everything here will run once the command ends or is interupted.
   @Override
   public void end(boolean interrupted) {}
 
-  // Returns true when the command should end.
+  // Returns true when the command should end. - You can put any custom conditions in place of the false. 
   @Override
   public boolean isFinished() {
     return false;

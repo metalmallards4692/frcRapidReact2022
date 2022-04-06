@@ -11,18 +11,19 @@ import frc.robot.Robot;
 import frc.robot.RobotContainer;
 
 public class AutoIntake extends CommandBase {
-  /** Creates a new AutoIntake. */
+//Create Timer object and declares a couple varibles
   private Timer ShootTimer = new Timer();
   private double val;
   double IR;
+
   public AutoIntake() {
-    // Use addRequirements() here to declare subsystem dependencies.
+//Requires these subsystems
     addRequirements(Robot.intake);
     addRequirements(Robot.indexer);
     addRequirements(RobotContainer.getDrivetrain());
   }
 
-  // Called when the command is initially scheduled.
+//Sets Gyroscope to zero so when it drives, it acutally goes backwards. It then deploys the intake and starts the timer. 
   @Override
   public void initialize() {
    RobotContainer.getDrivetrain().zeroGyroscope();
@@ -31,7 +32,7 @@ public class AutoIntake extends CommandBase {
    ShootTimer.start();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+//Each time this loops, it saves the current timer value and the value from the IR sensor. It also sets the motor speeds of the intake, index, and the robot itself
   @Override
   public void execute() {
     val = ShootTimer.get();
@@ -41,7 +42,7 @@ public class AutoIntake extends CommandBase {
     Robot.indexer.IndexOn(.3);
   }
 
-  // Called once the command ends or is interrupted.
+//When command ends, set all motors back to zero so it doesn't continue driving infinitly
   @Override
   public void end(boolean interrupted) {
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, 0.0));
@@ -49,9 +50,9 @@ public class AutoIntake extends CommandBase {
     Robot.indexer.IndexOn(0.0);
   }
 
-  // Returns true when the command should end.
+//Ends command when the IR sensor gets tripped or the timer reaches 5 seconds
   @Override
   public boolean isFinished() {
-    return (IR >= 250 || val >5);
+    return (IR >= 250 || val > 5);
   }
 }

@@ -12,7 +12,7 @@ import frc.robot.Robot;
 public class Shoot extends CommandBase {
   /** Creates a new Shoot. */
   public Shoot() {
-    // Use addRequirements() here to declare subsystem dependencies.
+//Requires these subsystems
       addRequirements(Robot.m_shooter);
   }
 
@@ -20,7 +20,8 @@ public class Shoot extends CommandBase {
   @Override
   public void initialize() {}
 
-  // Called every time the scheduler runs while the command is scheduled.
+//Gets the value of the HoodCylinders, and depending on the value, run the shooteron command with different values. Sadly this command was never really used outside of testing..
+//So the values are currently the same regardless of Cylinder position.
   @Override
   public void execute() {
     DoubleSolenoid.Value val = Robot.m_shooter.HoodCylinder.get();
@@ -31,7 +32,7 @@ public class Shoot extends CommandBase {
     }    
   }
 
-  // Called once the command ends or is interrupted.
+//Sets motor values to zero
   @Override
   public void end(boolean interrupted) {
     //shooter goes off

@@ -10,7 +10,7 @@ import frc.robot.Robot;
 public class IntakeOnWithStopper extends CommandBase {
   /** Creates a new IntakeOnWithStopper. */
   public IntakeOnWithStopper() {
-    // Use addRequirements() here to declare subsystem dependencies.
+//Requires these subsystems
     addRequirements(Robot.intake);
   }
 
@@ -18,13 +18,13 @@ public class IntakeOnWithStopper extends CommandBase {
   @Override
   public void initialize() {}
 
-  // Called every time the scheduler runs while the command is scheduled.
+//Runs IntakeOnWithStopper command with this parameter value
   @Override
   public void execute() {
     Robot.intake.IntakeOnWithStopper(1.0);
   }
 
-  // Called once the command ends or is interrupted.
+//Sets motors to zero at command end
   @Override
   public void end(boolean interrupted) {
     Robot.intake.IntakeOnWithStopper(0.0);

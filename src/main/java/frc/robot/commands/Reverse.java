@@ -10,7 +10,7 @@ import frc.robot.Robot;
 public class Reverse extends CommandBase {
   /** Creates a new SuperShoot. */
   public Reverse() {
-    // Use addRequirements() here to declare subsystem dependencies.
+//Requires these subsystems
     addRequirements(Robot.m_shooter);
     addRequirements(Robot.indexer);
     addRequirements(Robot.intake);
@@ -20,7 +20,7 @@ public class Reverse extends CommandBase {
   @Override
   public void initialize() {}
 
-  // Called every time the scheduler runs while the command is scheduled.
+//Sets motors to these values
   @Override
   public void execute() {
     Robot.m_shooter.ShooterOn(-.4);
@@ -28,7 +28,7 @@ public class Reverse extends CommandBase {
     Robot.intake.IntakeOn(-.4);
   }
 
-  // Called once the command ends or is interrupted.
+//Sets motors to zero wheb command ends
   @Override
   public void end(boolean interrupted) {
     Robot.m_shooter.ShooterOn(0.0);

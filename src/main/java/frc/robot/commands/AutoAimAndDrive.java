@@ -13,6 +13,7 @@ import frc.robot.subsystems.DrivetrainSubsystem;
 import edu.wpi.first.math.MathUtil;
 
 public class AutoAimAndDrive extends CommandBase {
+//Creates varibles with various values  
   private double kpAim = -0.1;
   private double kpDistance = -0.1;
   private double m_moveValue;
@@ -23,7 +24,7 @@ public class AutoAimAndDrive extends CommandBase {
     addRequirements(RobotContainer.getDrivetrain());
     addRequirements(Robot.visioncamera);
   }
-  // Called when the command is initially scheduled.
+  //When Command is first called, switch limelight to targeting pipeline and turn leds on
   @Override
   public void initialize() {
     Robot.visioncamera.switchPipeline(true);
@@ -37,7 +38,7 @@ public class AutoAimAndDrive extends CommandBase {
     double ty = MathUtil.applyDeadband(Robot.visioncamera.gLimeLight().getdegVerticalToTarget(), .1);
     boolean targetFound = Robot.visioncamera.gLimeLight().getIsTargetFound();
 
-    //new limelight code from their website
+  //PID Loop Control using limelight error headings and P value to set motors to the correct speed to reach target
     if (targetFound==true && tx > 1.0) {
       m_rotateValue = tx * kpAim - min_command;
     } else if (targetFound==true && tx < 1.0) {
@@ -46,15 +47,13 @@ public class AutoAimAndDrive extends CommandBase {
       m_rotateValue = RobotContainer.modifyAxis(RobotContainer.rightJoy.getZ()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND * -.5;
     }
      m_moveValue = ty * kpDistance - min_command;
-     //m_moveValue = MathUtil.applyDeadband(m_moveValue, .1);
-     //m_rotateValue = MathUtil.applyDeadband(m_rotateValue, .1);
 
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(m_moveValue, (RobotContainer.modifyAxis(RobotContainer.rightJoy.getX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND * -1), m_rotateValue));
     SmartDashboard.putNumber("X Error", Robot.visioncamera.gLimeLight().getdegRotationToTarget());
     SmartDashboard.putNumber("Y Error", Robot.visioncamera.gLimeLight().getdegVerticalToTarget());
   }
 
-  // Called once the command ends or is interrupted.
+  //Sets drivetrain back to 0 so it stops moving and turns limelight back to driving camera mode
   @Override
   public void end(boolean interrupted) {
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, 0.0));

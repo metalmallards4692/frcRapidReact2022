@@ -8,27 +8,27 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class WrongBall extends CommandBase {
-  /** Creates a new WrongBall. */
+
   public WrongBall() {
-    // Use addRequirements() here to declare subsystem dependencies.
+//Requires these subsystems
     addRequirements(Robot.m_shooter);
     addRequirements(Robot.indexer);
   }
 
-  // Called when the command is initially scheduled.
+//When command is first called, lower the hood
   @Override
   public void initialize() {
     Robot.m_shooter.HoodToggle();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+///Set the value of the motors to whatever numbers are there
   @Override
   public void execute() {
     Robot.indexer.IndexOn(.3);
     Robot.m_shooter.ShooterOn(.3);
   }
 
-  // Called once the command ends or is interrupted.
+//When the command ends, return hood to original position and set motors back to zero.
   @Override
   public void end(boolean interrupted) {
     Robot.indexer.IndexOn(0.0);

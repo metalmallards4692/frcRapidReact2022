@@ -23,19 +23,22 @@ import edu.wpi.first.wpilibj.SPI;
 import static frc.robot.Constants.*;
 
 public class DrivetrainSubsystem extends SubsystemBase {
-        
+//This is made purely from the SDS Template so I will try my best to explain everything to the best of my ability   
 
 
+//This varible represents the MAX_VOLTAGE the motors will use when operating. Lower means slower, but may help with brownouts
   public static final double MAX_VOLTAGE = 12.0;
- 
+
+//Calcuates Max Velocity using Motor RPM / 60. Drive Reduction is found from the Gear Ratios from the Swerve Modules. Then gets cirfumfrence of wheels using wheel diameter and pi
   public final static double MAX_VELOCITY_METERS_PER_SECOND = 5676.0 / 60.0 * 
           SdsModuleConfigurations.MK3_STANDARD.getDriveReduction() *
           SdsModuleConfigurations.MK3_STANDARD.getWheelDiameter() * Math.PI;
         
-
+//Calucates the max speed of the Angle Motors using the drive motor max speed with more math
   public static final double MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND = MAX_VELOCITY_METERS_PER_SECOND /
           Math.hypot(DRIVETRAIN_TRACKWIDTH_METERS / 2.0, DRIVETRAIN_WHEELBASE_METERS / 2.0);
 
+//Creates kinematics object using the robots dimensions and the WPI SwerveDriveKinematics class. More research is needed to understand how it works
   private final SwerveDriveKinematics m_kinematics = new SwerveDriveKinematics(
           // Front left
           new Translation2d(DRIVETRAIN_TRACKWIDTH_METERS / 2.0, DRIVETRAIN_WHEELBASE_METERS / 2.0),
@@ -47,18 +50,21 @@ public class DrivetrainSubsystem extends SubsystemBase {
           new Translation2d(-DRIVETRAIN_TRACKWIDTH_METERS / 2.0, -DRIVETRAIN_WHEELBASE_METERS / 2.0)
   );
 
-
+//Creates Navx object using AHRS class and the MXP port on the RoboRio
 private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connected over MXP
 
+//Declares names of the modules that will be used
   // These are our modules. We initialize them in the constructor.
   private final SwerveModule m_frontLeftModule;
   private final SwerveModule m_frontRightModule;
   private final SwerveModule m_backLeftModule;
   private final SwerveModule m_backRightModule;
 
+//Not sure why this ChassisSpeed is made, but serves as a good template for how to set one up for Autonomous or limelight driving.
   private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
   
   public DrivetrainSubsystem() {
+    //Creates Shuffleboard tab for the drivetrain values created from the library's Module builder      
         final ShuffleboardTab tab = Shuffleboard.getTab("Drivetrain");
 
     m_frontLeftModule = Mk3SwerveModuleHelper.createNeo(
@@ -114,38 +120,29 @@ private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connect
   }
 
 
-  /**
-   * Sets the gyroscope angle to zero. This can be used to set the direction the robot is currently facing to the
-   * 'forwards' direction.
-   */
+//Sets the current direction as forward for field oriented driving
   public void zeroGyroscope() {
-    // FIXME Remove if you are using a Pigeon
-    // m_pigeon.setFusedHeading(0.0);
-
-    // FIXME Uncomment if you are using a NavX
         m_navx.zeroYaw();
   }
-
+//Gets current Gyroscope rotation. This value will be used to figure out how far each wheel needs to spin to reach a certain direction.
   public Rotation2d getGyroscopeRotation() {
-    // FIXME Remove if you are using a Pigeon
-    // return Rotation2d.fromDegrees(m_pigeon.getFusedHeading());
 
-    // FIXME Uncomment if you are using a NavX
     if (m_navx.isMagnetometerCalibrated()) {
-//      // We will only get valid fused headings if the magnetometer is calibrated
+      // We will only get valid fused headings if the magnetometer is calibrated
       return Rotation2d.fromDegrees(m_navx.getFusedHeading());
  }
-//
-//    // We have to invert the angle of the NavX so that rotating the robot counter-clockwise makes the angle increase.
+
+   // We have to invert the angle of the NavX so that rotating the robot counter-clockwise makes the angle increase.
    return Rotation2d.fromDegrees(360.0 - m_navx.getYaw());
   }
 
+  //Basic drive command. To call it do - drive(new ChassisSpeeds(0.0, 0.0, 0.0)) and replace the 0.0s with whatever value you want
   public void drive(final ChassisSpeeds chassisSpeeds) {
     m_chassisSpeeds = chassisSpeeds;
   }
   
   
-  
+//Constantly sets the wheels to the required angle. Since this is in a periodic function, it will happen 50 times a second. Or every 20ms.  
   @Override
   public void periodic() {
     final SwerveModuleState[] states = m_kinematics.toSwerveModuleStates(m_chassisSpeeds);

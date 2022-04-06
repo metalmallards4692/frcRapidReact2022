@@ -12,12 +12,20 @@ import frc.robot.RobotContainer;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class AutoShoot extends CommandBase {
+
+// This Command is obsolete and has been replaced by the TwoBallAuto, however it is smart to keep it just in case we are put in a situation where the TwoBall is not viable
+// Is is also poorly setup but may serve as a decent reference on what not to do.
+
+//Declares varibles, and creates a timer object
   private final DrivetrainSubsystem m_DrivetrainSubsystem;
   private Timer ShootTimer = new Timer();
   private Double Shooter_Power = .48;
   private Double index_Power = .3;
+  private Double val;
+
   /** Creates a new AutoShoot. */
   public AutoShoot(DrivetrainSubsystem m_DrivetrainSubsystem) {
+//Requires these subsystems - Also by adding a drivetrain parameter, I can use the static varibles from that subsystem such as MAX_VELOCITY and functions such as zero gyroscope    
     this.m_DrivetrainSubsystem = m_DrivetrainSubsystem;
     addRequirements(Robot.m_shooter);
     addRequirements(Robot.indexer);
@@ -25,7 +33,7 @@ public class AutoShoot extends CommandBase {
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
+  //When Command first starts, reset and start timer, then zero gyroscope so that when it drives backwards, it goes backwards in reference to the current postion rather than previous headings
   @Override
   public void initialize() {
     ShootTimer.reset();
@@ -34,10 +42,10 @@ public class AutoShoot extends CommandBase {
     
   }  
 
-  // Called every time the scheduler runs while the command is scheduled.
+ //Each loop, the value of val gets updated with the current time, and depending on the time, it will run certain parts of the IF ELSE statement. 
   @Override
   public void execute() {
-    Double val = ShootTimer.get();
+    val = ShootTimer.get();
     if (val < 2) {
       Robot.m_shooter.ShooterOn(Shooter_Power);
     } else if (val < 4) {
@@ -55,7 +63,7 @@ public class AutoShoot extends CommandBase {
     }
   }
 
-  // Called once the command ends or is interrupted.
+  //When Command ends, set motors to zero
   @Override
   public void end(boolean interrupted) {
     Robot.m_shooter.ShooterOn(0.0);

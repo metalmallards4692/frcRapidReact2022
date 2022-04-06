@@ -10,25 +10,25 @@ import frc.robot.Robot;
 public class FenderShot extends CommandBase {
   /** Creates a new FenderShot. */
   public FenderShot() {
-    // Use addRequirements() here to declare subsystem dependencies.
+//Requires these subsystems
     addRequirements(Robot.m_shooter);
     addRequirements(Robot.indexer);
   }
 
-  // Called when the command is initially scheduled.
+//When the command first gets called, set hood to the down position, since it starts in the forward, the toggle command works just fine.
   @Override
   public void initialize() {
     Robot.m_shooter.HoodToggle();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+//it will run the index and shooter motors at these values for as long as the command is running.
   @Override
   public void execute() {
   Robot.indexer.IndexOn(.5);
    Robot.m_shooter.ShooterOn(.4);
   }
 
-  // Called once the command ends or is interrupted.
+//When the command ends, it will set motors to these values to stop them from spinning forever.
   @Override
   public void end(boolean interrupted) {
     Robot.indexer.IndexOn(0.0);

@@ -10,20 +10,20 @@ import frc.robot.Robot;
 public class IntakeOn extends CommandBase {
   /** Creates a new IntakeOn. */
   public IntakeOn() {
+//Requires these subsystems
     addRequirements(Robot.intake);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {}
 
-  // Called every time the scheduler runs while the command is scheduled.
+//Sets intake motors to this value
   @Override
   public void execute() {
     Robot.intake.IntakeOn(1.0);
   }
-  // Called once the command ends or is interrupted.
+//When command ends, set motor to zero
   @Override
   public void end(boolean interrupted) {
     Robot.intake.IntakeOn(0.0);

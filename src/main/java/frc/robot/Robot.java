@@ -28,12 +28,14 @@ public class Robot extends TimedRobot {
 private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+
+//This is where I create all of the new subsystems. You can also do this in RobotContainer, but it is up to you. However, Robot. is faster to type than RobotContainer.
   public static Shooter m_shooter = new Shooter();
   public static Climber climber = new Climber();
   public static Indexer indexer = new Indexer();
   public static Intake intake = new Intake();
   public static VisionCamera visioncamera = new VisionCamera();
-
+//I created objects for both the Pneumatics hub and PDH because i want to be able to clear sticky faults cause my dad did not like them flashing red. This is unneccessary
   public static PneumaticHub hub = new PneumaticHub(3);
   public static PowerDistribution powerhub = new PowerDistribution(1, PowerDistribution.ModuleType.kRev);
   
@@ -49,9 +51,12 @@ private Command m_autonomousCommand;
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
+//Clears afformentioned sticky faults
     hub.clearStickyFaults();
     powerhub.clearStickyFaults();
+//Creates USB camera and starts streaming so the smartdashboard can get the feed.
     UsbCamera cam = CameraServer.startAutomaticCapture();
+//FRC has a limit on resolution, so gotta use small ones rather than 1080p.
     cam.setResolution(160, 120);
   }
 

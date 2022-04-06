@@ -8,21 +8,22 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class HoodToggle extends CommandBase {
-  /** Creates a new HoodToggle. */
+//Okay so this method of creating a togglable is copied from our InfiniteRecharge repository. I will test removing all the booleans to see if it works the same, but for now just leave it be.
+
   boolean bDone = false;
   public HoodToggle() {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(Robot.m_shooter);
   }
 
-  // Called when the command is initially scheduled.
+//Sets value of bDone to false, even though it was already == to false. Then it runs the HoodToggle command which toggles the hood cylinder value
   @Override
   public void initialize() {
     bDone = false;
     Robot.m_shooter.HoodToggle();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+// Upon the first loop, it will set the value of bDone to true, ending the command.
   @Override
   public void execute() {
     bDone = true;
@@ -33,7 +34,7 @@ public class HoodToggle extends CommandBase {
   public void end(boolean interrupted) {
   }
 
-  // Returns true when the command should end.
+//Ends command when the value of bDone == true
   @Override
   public boolean isFinished() {
     return bDone;

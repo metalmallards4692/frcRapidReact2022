@@ -10,35 +10,36 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.RobotContainer;
 
 public class TimedDriveBackwards extends CommandBase {
-  /** Creates a new TimedDriveBackwards. */
+//Declares varible names and creates timer object
   double val;
   private Timer ShootTimer = new Timer();
   public TimedDriveBackwards() {
+//Requires these subsystems
     addRequirements(RobotContainer.getDrivetrain());
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
+//When the command is first called, reset and start the timer 
   @Override
   public void initialize() {
     ShootTimer.reset();
     ShootTimer.start();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+//Each loop will update the val variable and it also sets the motors on the robot to drive backwards
   @Override
   public void execute() {
     val = ShootTimer.get();
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(.5, 0.0, 0.0));
   }
 
-  // Called once the command ends or is interrupted.
+//When command ends, set motor values to zero - Fun fact, I had this set to -0.5 rather than zero which explains why the robot would always drive forward towards the end of autonomous
   @Override
   public void end(boolean interrupted) {
-    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(-.5, 0.0, 0.0));
+    RobotContainer.getDrivetrain().drive(new ChassisSpeeds(0.0, 0.0, 0.0));
   }
 
-  // Returns true when the command should end.
+//Command will end after 4 seconds
   @Override
   public boolean isFinished() {
     return (val > 4);

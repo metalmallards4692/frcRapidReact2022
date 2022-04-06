@@ -10,7 +10,7 @@ import frc.robot.Robot;
 public class IndexOn extends CommandBase {
   /** Creates a new IndexOn. */
   public IndexOn() {
-    // Use addRequirements() here to declare subsystem dependencies.
+//Requires these subsystems
     addRequirements(Robot.indexer);
   }
 
@@ -18,13 +18,13 @@ public class IndexOn extends CommandBase {
   @Override
   public void initialize() {}
 
-  // Called every time the scheduler runs while the command is scheduled.
+//Sets index motors to this value and stays on until command ends
   @Override
   public void execute() {
     Robot.indexer.IndexOn(.5);
   }
 
-  // Called once the command ends or is interrupted.
+//When command ends, set motors to zero to stop them from spinning
   @Override
   public void end(boolean interrupted) {
     Robot.indexer.IndexOn(0.0);

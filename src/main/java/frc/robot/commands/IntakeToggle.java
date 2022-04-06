@@ -8,21 +8,22 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class IntakeToggle extends CommandBase {
+//Decalres new boolean value and sets to false
   boolean bDone = false;
   /** Creates a new IntakeToggle. */
   public IntakeToggle() {
+//Requires these subsystems
     addRequirements(Robot.intake);
-    // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
+//Set value of boolean to false and runs the IntakeToggle function
   @Override
   public void initialize() {
     bDone = false;
     Robot.intake.IntakeToggle();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+//Sets value of bDone to true each loop. Which triggers the isFinsihed function ending the command on the first loop
   @Override
   public void execute() {
     bDone = true;
@@ -33,7 +34,7 @@ public class IntakeToggle extends CommandBase {
   public void end(boolean interrupted) {
   }
 
-  // Returns true when the command should end.
+//When bDOne equals true, end command
   @Override
   public boolean isFinished() {
     return bDone;

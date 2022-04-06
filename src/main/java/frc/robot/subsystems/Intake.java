@@ -13,18 +13,18 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
+//Declares names of motors and doublesolenoids  
   CANSparkMax IntakeMotor = Constants.IntakeMotor;
-  private DoubleSolenoid IntakeCylinders;
   CANSparkMax TransferMotor = Constants.TransferMotor;
-  
-
-  /** Creates a new Intake. */
+  private DoubleSolenoid IntakeCylinders;
  
   public Intake() {
+//Creates Double Solenoid on the ID 3 Hub and channel 2, 3.     
     IntakeCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 2, 3);
+// Sets initial value of Cylinder to kOff, AKA no air flowing to Cylinder    
     IntakeCylinders.set(Value.kOff);
   }
-  
+//Function to stop the Intake motors from running if the intake is retracted because it could damage stuff. But still alows the transfer motors to run.  
   public void IntakeOnWithStopper(Double output) {
     if (IntakeCylinders.get()==Value.kReverse || IntakeCylinders.get() == Value.kOff) {
       IntakeMotor.set(0.0);
@@ -34,13 +34,13 @@ public class Intake extends SubsystemBase {
       TransferMotor.set(output * -1);
     }
   }
-  
+//Basic set motor value function  
   public void IntakeOn(Double output) {
     IntakeMotor.set(output * -1);
     TransferMotor.set(output * -1);
   }
   
-
+//Toggle Cylinder function for intake. Same as HoodToggle because I copy pasted it. 
   public void IntakeToggle() {
     DoubleSolenoid.Value val = IntakeCylinders.get();
     if(val == DoubleSolenoid.Value.kForward) {

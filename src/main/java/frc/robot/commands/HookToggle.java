@@ -8,21 +8,21 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class HookToggle extends CommandBase {
-  /** Creates a new HookToggle. */
+//Creates boolean and sets its value to false
   boolean bDone = false;
   public HookToggle() {
-    // Use addRequirements() here to declare subsystem dependencies.
+//Requires these subsystems
     addRequirements(Robot.climber);
   }
 
-  // Called when the command is initially scheduled.
+//When command is first started, set value to false and calls the HoodToggle function
   @Override
   public void initialize() {
     bDone = false;
     Robot.climber.HookToggle();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
+//Sets the value of bDOne to true, effectively ending the command
   @Override
   public void execute() {
    bDone = true;
@@ -33,7 +33,7 @@ public class HookToggle extends CommandBase {
   public void end(boolean interrupted) {
   }
 
-  // Returns true when the command should end.
+//Ends command once bDone equals true, which happens to be instantly in the first loop
   @Override
   public boolean isFinished() {
     return bDone;
