@@ -21,6 +21,7 @@ public class Intake extends SubsystemBase {
   public Intake() {
 //Creates Double Solenoid on the ID 3 Hub and channel 2, 3.     
     IntakeCylinders = new DoubleSolenoid(3,PneumaticsModuleType.REVPH, 2, 3);
+
 // Sets initial value of Cylinder to kOff, AKA no air flowing to Cylinder    
     IntakeCylinders.set(Value.kOff);
   }
@@ -34,6 +35,7 @@ public class Intake extends SubsystemBase {
       TransferMotor.set(output * -1);
     }
   }
+  
 //Basic set motor value function  
   public void IntakeOn(Double output) {
     IntakeMotor.set(output * -1);
