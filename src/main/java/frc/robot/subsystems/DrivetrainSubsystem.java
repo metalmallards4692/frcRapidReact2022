@@ -60,7 +60,7 @@ private final AHRS m_navx = new AHRS(SPI.Port.kMXP, (byte) 200); // NavX connect
   private final SwerveModule m_backLeftModule;
   private final SwerveModule m_backRightModule;
 
-//Not sure why this ChassisSpeed is made, but serves as a good template for how to set one up for Autonomous or limelight driving.
+//Creates a ChassisSpeed varible that will be updated with whatever is put into the drive command
   private ChassisSpeeds m_chassisSpeeds = new ChassisSpeeds(0.0, 0.0, 0.0);
   
   public DrivetrainSubsystem() {

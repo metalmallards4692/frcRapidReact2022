@@ -52,6 +52,7 @@ public class RobotContainer {
  //This is the RobotContainer method 
   public RobotContainer() {
   //Sets default command for the drivetrainSubsystem. A default command will run when nothing else is so it is perfect for a teleop driving command
+  //The () -> - is a lambda function and allows the values of the joysticks to be saved as the Double Suppliers in the defaultcommand
     m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(m_drivetrainSubsystem,
         () -> -modifyAxis(rightJoy.getY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
         () -> -modifyAxis(rightJoy.getX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
