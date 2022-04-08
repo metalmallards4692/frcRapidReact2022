@@ -1,8 +1,5 @@
 package frc.robot;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Compressor;
 
@@ -69,28 +66,19 @@ public final class Constants {
     public static int GamepadR3 = 9;
     public static int GamepadL3 = 10;
 
-//CAN ID of SpeedContrller responsible for each of the motors used for the shooter
+//CAN ID of SpeedContrller responsible for each of the motors used
   //Shooter Motor IDs
     public static int SHOOTER_MOTOR_1 = 34;
     public static int SHOOTER_MOTOR_2 = 37;
-//Creates Motors using CANSpark constructor     
-  //Creating Motors
-    public static CANSparkMax ShootMotor1 = new CANSparkMax(Constants.SHOOTER_MOTOR_1, MotorType.kBrushless);
-    public static CANSparkMax ShootMotor2 = new CANSparkMax(Constants.SHOOTER_MOTOR_2, MotorType.kBrushless);
-//Same thing as shooter motors, but for indexer
+
   //Indexer Motors
     public static int RIGHT_INDEX = 38;
     public static int LEFT_INDEX = 33;
-  //Create Index Motors
-    public static CANSparkMax RightIndex = new CANSparkMax(Constants.RIGHT_INDEX, MotorType.kBrushless);
-    public static CANSparkMax LeftIndex = new CANSparkMax(Constants.LEFT_INDEX, MotorType.kBrushless);
-//Same thing as index motors, but for intake   
+  
   //intake Motor
     public static int INTAKE_MOTOR = 30;
     public static int TRANSFER_MOTOR = 36;
-  //Create Intake Motor
-    public static CANSparkMax IntakeMotor = new CANSparkMax(Constants.INTAKE_MOTOR, MotorType.kBrushless);
-    public static CANSparkMax TransferMotor = new CANSparkMax(Constants.TRANSFER_MOTOR, MotorType.kBrushless);
+
 //Creates compressor object so it runs when robot is enabled. One line and forget about it     
   //compressor
     public static Compressor cp;

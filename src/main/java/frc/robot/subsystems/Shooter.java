@@ -5,6 +5,7 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.PneumaticsModuleType;
@@ -13,9 +14,11 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Shooter extends SubsystemBase {
-//This is what is needed to setup a motor so it can be used in a subsystem  
-  CANSparkMax ShooterMotor1 = Constants.ShootMotor1;
-  CANSparkMax ShooterMotor2 = Constants.ShootMotor2;
+//Creates Motors using CANSpark constructor  
+  //Creating Motors
+  public static CANSparkMax ShootMotor1 = new CANSparkMax(Constants.SHOOTER_MOTOR_1, MotorType.kBrushless);
+  public static CANSparkMax ShootMotor2 = new CANSparkMax(Constants.SHOOTER_MOTOR_2, MotorType.kBrushless);
+
 //Delares name of a DoubleSolenoid   
   public DoubleSolenoid HoodCylinder;
   
@@ -29,8 +32,8 @@ public class Shooter extends SubsystemBase {
   }
 //Basic set Motor output to a number. The * -1 inverts the direction the motor is running.   
   public void ShooterOn(double output) {
-    ShooterMotor1.set(output * -1);
-    ShooterMotor2.set(output * -1); 
+    ShootMotor1.set(output * -1);
+    ShootMotor2.set(output * -1); 
  }
 
 //Basic toggle function to change the value of a cylinder. I copy pasted this function with simple name changes for each of the togglable cylinders.
