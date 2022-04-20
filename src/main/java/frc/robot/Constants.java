@@ -4,7 +4,9 @@ import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj.Compressor;
 
 public final class Constants {
-//Constants are numbers that will not change, or if you do change them, it will make it easy to find and swap.
+//Constants are numbers that will not change, or if you do change them, it will make it easy to find since everything is here.
+  // If you use a number more than once for something, throw it in here to make your life a lot easier.
+    //I should have created a shooter motor speed value since I have 4+ commands that use it and changing them all around is tedious and you will forget a few here and there.
 
   //Drive Train Constants
     public static final double DRIVETRAIN_TRACKWIDTH_METERS = Units.inchesToMeters(23.5); 

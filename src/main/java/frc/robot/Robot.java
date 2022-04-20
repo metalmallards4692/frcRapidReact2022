@@ -47,8 +47,7 @@ private Command m_autonomousCommand;
    */
   @Override
   public void robotInit() {
-    // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
-    // autonomous chooser on the dashboard.
+    // Instantiate our RobotContainer.  This will perform all our button bindings.
     m_robotContainer = new RobotContainer();
 
 //Clears afformentioned sticky faults

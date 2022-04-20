@@ -19,12 +19,13 @@ import frc.robot.commands.WrongBall;
 import frc.robot.subsystems.DrivetrainSubsystem;
 
 public class RobotContainer {
-  // This template creates the Drivetrain Subsystem here rather than in Robot.java
+//Creates an instance of the DrivetrainSubsystem class. 
   private static final DrivetrainSubsystem m_drivetrainSubsystem = new DrivetrainSubsystem();
 
- //Joystick - Creates joystick objects using the ID number from constants and the Joystick class 
+//Joystick - Creates joystick objects using the ID number from constants and the Joystick class 
  public final Joystick leftJoy = new Joystick(Constants.leftJoystick);
  public final static Joystick rightJoy = new Joystick(Constants.rightJoystick);
+ public final Joystick gamepad = new Joystick(Constants.gamepad);
 
  //Joystick button - Declares the names for each of the joystick buttons 
    public JoystickButton rTrigger;
@@ -37,7 +38,6 @@ public class RobotContainer {
    public JoystickButton lBottom;
 
 //GamePad - Declares the names for each of the gamepad buttons
- public final Joystick gamepad = new Joystick(Constants.gamepad);
  public JoystickButton gamepadX;	
  public JoystickButton gamepadA;
  public JoystickButton gamepadY;
@@ -52,7 +52,7 @@ public class RobotContainer {
  //This is the RobotContainer method 
   public RobotContainer() {
   //Sets default command for the drivetrainSubsystem. A default command will run when nothing else is so it is perfect for a teleop driving command
-  //The () -> - is a lambda function and allows the values of the joysticks to be saved as the Double Suppliers in the defaultcommand
+    //Runs the DefaultDriveCommand with the 4 parameters plugged into it. 
     m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(m_drivetrainSubsystem,
         () -> -modifyAxis(rightJoy.getY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
         () -> -modifyAxis(rightJoy.getX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
@@ -89,13 +89,13 @@ public class RobotContainer {
  
 //This is all of the commands called by the joystick buttons - I like to seperate gamepad and joystick for easily finding a command
     //Joystick Functions
-    rBottom.whenPressed(m_drivetrainSubsystem::zeroGyroscope);
+    rBottom.whenPressed(m_drivetrainSubsystem::zeroGyroscope); //This syntax creates an 'instant command' 
     lOutside.whenPressed(new ArmUp());
     lInside.whenPressed(new ArmDown());
     lTrigger.whenPressed(new HookToggle());
 
     
-//Not much to say about this one, it is just the gamepad version of the joysticks above
+//Not much to say about this one, it is just the gamepad version of the joysticks above 
     //Gamepad Functions
     gamepadY.whenPressed(new IntakeToggle());
     gamepadL1.whenHeld(new AutoAimAndDrive(m_drivetrainSubsystem));
@@ -131,7 +131,14 @@ public class RobotContainer {
     }
   }
 
-//This is a function that uses both the deadband function and squares the value. To be honest not sure what the square is for, but I'm sure it is required for the math regarding swerve drive angles.
+//This is a function that uses both the deadband function and squares the value. Squaring allows more accuracy at smaller values while scaling up to higher values when joystick is pressed farther.
+/**
+ * This command applys a deadband and squares the axis. Deadband ignores very small value changes so motors do not get burned up from constantly moving .00001. Squaring the axis
+ * turns the linear rate of change into quadratic. Pretty much creates a parabola curve so small values are easier to drive with for precison and larger values will change faster allowing faster moving.
+ * 
+ * @param Value: Put the getAxis command in here.
+ * @return Returns the modified axis 
+ */
   public static double modifyAxis(double value) {
     // Deadband
     value = deadband(value, 0.05);
