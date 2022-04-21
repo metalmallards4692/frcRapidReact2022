@@ -12,7 +12,7 @@ public class AutoTimedShoot extends CommandBase {
 //Declares varibles and creates timer object
   private Timer ShootTimer = new Timer();
   private Double index_Power = .5;
-  private double SHOOT_POWER = .435;
+  private double SHOOT_POWER = .5; //435
   private double val;
 
   

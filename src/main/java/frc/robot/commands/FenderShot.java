@@ -25,7 +25,7 @@ public class FenderShot extends CommandBase {
   @Override
   public void execute() {
   Robot.indexer.IndexOn(.5);
-   Robot.m_shooter.ShooterOn(.4);
+   Robot.m_shooter.ShooterOn(.5); //.4
   }
 
 //When the command ends, it will set motors to these values to stop them from spinning forever.
