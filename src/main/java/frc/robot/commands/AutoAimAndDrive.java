@@ -34,19 +34,19 @@ public class AutoAimAndDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double tx = MathUtil.applyDeadband(Robot.visioncamera.gLimeLight().getdegRotationToTarget(), .1);
-    double ty = MathUtil.applyDeadband(Robot.visioncamera.gLimeLight().getdegVerticalToTarget(), .1);
+    double tx = Robot.visioncamera.gLimeLight().getdegRotationToTarget();
+    double ty = Robot.visioncamera.gLimeLight().getdegVerticalToTarget();
     boolean targetFound = Robot.visioncamera.gLimeLight().getIsTargetFound();
 
   //PID Loop Control using limelight error headings and P value to set motors to the correct speed to reach target
     if (targetFound==true && tx > 1.0) {
-      m_rotateValue = tx * kpAim - min_command;
+      m_rotateValue = MathUtil.applyDeadband(tx * kpAim, .15);
     } else if (targetFound==true && tx < 1.0) {
-      m_rotateValue = tx * kpAim - min_command;
+      m_rotateValue = MathUtil.applyDeadband(tx * kpAim, .15);
     } else {
       m_rotateValue = RobotContainer.modifyAxis(RobotContainer.rightJoy.getZ()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND * -.5;
     }
-     m_moveValue = ty * kpDistance - min_command;
+     m_moveValue = MathUtil.applyDeadband(ty * kpDistance, .1);
 
     RobotContainer.getDrivetrain().drive(new ChassisSpeeds(m_moveValue, (RobotContainer.modifyAxis(RobotContainer.rightJoy.getX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND * -1), m_rotateValue));
     SmartDashboard.putNumber("X Error", Robot.visioncamera.gLimeLight().getdegRotationToTarget());
