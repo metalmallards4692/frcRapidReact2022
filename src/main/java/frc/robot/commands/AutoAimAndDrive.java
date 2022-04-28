@@ -18,7 +18,7 @@ public class AutoAimAndDrive extends CommandBase {
   private double kpDistance = -0.1;
   private double m_moveValue;
   private double m_rotateValue;
-  private double min_command = 0.2;
+  //private double min_command = 0.2;
   public AutoAimAndDrive(DrivetrainSubsystem m_DrivetrainSubsystem) {
 
     addRequirements(RobotContainer.getDrivetrain());

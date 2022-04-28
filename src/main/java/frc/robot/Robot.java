@@ -57,6 +57,7 @@ private Command m_autonomousCommand;
     UsbCamera cam = CameraServer.startAutomaticCapture();
 //FRC has a limit on resolution, so gotta use small ones rather than 1080p.
     cam.setResolution(160, 120);
+    cam.setFPS(30);
   }
 
   /**
