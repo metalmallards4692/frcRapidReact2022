@@ -8,6 +8,7 @@ import frc.robot.commands.ArmUp;
 import frc.robot.commands.AutoAimAndDrive;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.FenderShot;
+import frc.robot.commands.HoodToggle;
 import frc.robot.commands.HookToggle;
 import frc.robot.commands.IndexWithStopper;
 import frc.robot.commands.IntakeOnWithStopper;
@@ -54,9 +55,9 @@ public class RobotContainer {
   //Sets default command for the drivetrainSubsystem. A default command will run when nothing else is so it is perfect for a teleop driving command
     //Runs the DefaultDriveCommand with the 4 parameters plugged into it. 
     m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(m_drivetrainSubsystem,
-        () -> -modifyAxis(rightJoy.getY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-        () -> -modifyAxis(rightJoy.getX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND,
-        () -> -modifyAxis(rightJoy.getZ()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND / 2));
+        () -> -modifyAxis(rightJoy.getY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND /2,
+        () -> -modifyAxis(rightJoy.getX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND / 2,
+        () -> -modifyAxis(rightJoy.getZ()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND / 4));
 
   //Runs the configureButtonBindings function created below. 
     configureButtonBindings();
@@ -85,6 +86,7 @@ public class RobotContainer {
     gamepadL1 = new JoystickButton(gamepad, Constants.GamepadL1);
     gamepadR3 = new JoystickButton(gamepad, Constants.GamepadR3);
     gamepadL3 = new JoystickButton(gamepad, Constants.GamepadL3);
+    gamepadSelect = new JoystickButton(gamepad, Constants.GamepadSelect);
    
  
 //This is all of the commands called by the joystick buttons - I like to seperate gamepad and joystick for easily finding a command
@@ -105,6 +107,7 @@ public class RobotContainer {
     gamepadB.whenHeld(new Reverse());
     gamepadL3.whenHeld(new FenderShot());
     gamepadR3.whenHeld(new WrongBall());
+    gamepadSelect.whenPressed(new HoodToggle());
 
     
   }

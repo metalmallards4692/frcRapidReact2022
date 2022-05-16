@@ -67,6 +67,7 @@ public final class Constants {
     public static int GamepadR1 = 6;          
     public static int GamepadR3 = 9;
     public static int GamepadL3 = 10;
+    public static int GamepadSelect = 8;
 
 //CAN ID of SpeedContrller responsible for each of the motors used
   //Shooter Motor IDs

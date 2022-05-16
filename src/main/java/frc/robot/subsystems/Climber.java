@@ -52,8 +52,5 @@ public void HookToggle() {
   public void periodic() {
     // This method will be called once per scheduler run
   }
-//Not sure the difference between this and the inital set command up top but throw it in just in case. When I get back in the shop I will remove this and test what happens to see if it is useful or not
-  public void initDefaultCommand() {
-    ClimbCylinders.set(Value.kOff);
-  }
+
 }
