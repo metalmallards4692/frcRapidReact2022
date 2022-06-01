@@ -17,22 +17,22 @@ public final class Constants {
     public static final int FRONT_LEFT_MODULE_STEER_MOTOR = 28; 
     public static final int FRONT_LEFT_MODULE_STEER_ENCODER = 12;
 //The offset recorded in shuffleboard when lining up the wheels forward. 
-    public static final double FRONT_LEFT_MODULE_STEER_OFFSET = Math.toRadians(271.8457090422795); 
+    public static final double FRONT_LEFT_MODULE_STEER_OFFSET = Math.toRadians(271.7578454887965); 
 //Same format as above
     public static final int FRONT_RIGHT_MODULE_DRIVE_MOTOR = 21; 
     public static final int FRONT_RIGHT_MODULE_STEER_MOTOR = 22; 
     public static final int FRONT_RIGHT_MODULE_STEER_ENCODER = 13;
-    public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(71.63085759970002);  //22.060546
+    public static final double FRONT_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(71.89453705260837);  //22.060546
 
     public static final int BACK_LEFT_MODULE_DRIVE_MOTOR = 25; 
     public static final int BACK_LEFT_MODULE_STEER_MOTOR = 29; 
     public static final int BACK_LEFT_MODULE_STEER_ENCODER = 11; 
-    public static final double BACK_LEFT_MODULE_STEER_OFFSET = Math.toRadians(316.05468218107734 - 90); //77.255860
+    public static final double BACK_LEFT_MODULE_STEER_OFFSET = Math.toRadians(315.8789004325979 - 90); //77.255860
 
     public static final int BACK_RIGHT_MODULE_DRIVE_MOTOR = 23; 
     public static final int BACK_RIGHT_MODULE_STEER_MOTOR = 24; 
     public static final int BACK_RIGHT_MODULE_STEER_ENCODER = 10; 
-    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(7.031249875497239);
+    public static final double BACK_RIGHT_MODULE_STEER_OFFSET = -Math.toRadians(6.240234995547485);
     
   //Joystick - ID Values - Can be found in DriverStation under the USB tab
     public static final int rightJoystick = 0;
@@ -86,4 +86,7 @@ public final class Constants {
   //compressor
     public static Compressor cp;
     
+  // Value of motor divided by speed.
+  // Eg.  / 2
+  public static int METERS_PER_SECOND_DIVIDED = 1;
 }

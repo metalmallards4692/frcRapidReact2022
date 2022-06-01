@@ -12,7 +12,7 @@ public class TimedShoot extends CommandBase {
 //Declares variables and creates timer object
   private Timer ShootTimer = new Timer();
   private Double index_Power = .5;
-  private double SHOOT_POWER = .435;
+  private double SHOOT_POWER = .6; //.435
   private double val;
 
   

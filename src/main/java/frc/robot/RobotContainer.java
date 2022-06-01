@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.commands.ArmDown;
 import frc.robot.commands.ArmUp;
 import frc.robot.commands.AutoAimAndDrive;
+import frc.robot.commands.ChangeSpeed;
 import frc.robot.commands.DefaultDriveCommand;
 import frc.robot.commands.FenderShot;
 import frc.robot.commands.HoodToggle;
@@ -55,9 +56,9 @@ public class RobotContainer {
   //Sets default command for the drivetrainSubsystem. A default command will run when nothing else is so it is perfect for a teleop driving command
     //Runs the DefaultDriveCommand with the 4 parameters plugged into it. 
     m_drivetrainSubsystem.setDefaultCommand(new DefaultDriveCommand(m_drivetrainSubsystem,
-        () -> -modifyAxis(rightJoy.getY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND /2,
-        () -> -modifyAxis(rightJoy.getX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND / 2,
-        () -> -modifyAxis(rightJoy.getZ()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND / 4));
+        () -> -modifyAxis(rightJoy.getY()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND / Constants.METERS_PER_SECOND_DIVIDED,
+        () -> -modifyAxis(rightJoy.getX()) * DrivetrainSubsystem.MAX_VELOCITY_METERS_PER_SECOND / Constants.METERS_PER_SECOND_DIVIDED,
+        () -> -modifyAxis(rightJoy.getZ()) * DrivetrainSubsystem.MAX_ANGULAR_VELOCITY_RADIANS_PER_SECOND / (Constants.METERS_PER_SECOND_DIVIDED * 2)));
 
   //Runs the configureButtonBindings function created below. 
     configureButtonBindings();
@@ -76,6 +77,7 @@ public class RobotContainer {
     lOutside = new JoystickButton(leftJoy, Constants.JoystickLeftOutside);
     rBottom = new JoystickButton(rightJoy, Constants.JoystickRightBottom);
     lBottom = new JoystickButton(leftJoy, Constants.JoystickLeftBottom);
+
 //Same thing as joystick but for the gamepad buttons
     // Gamepad
     gamepadX = new JoystickButton(gamepad, Constants.GamepadX);
@@ -108,6 +110,7 @@ public class RobotContainer {
     gamepadL3.whenHeld(new FenderShot());
     gamepadR3.whenHeld(new WrongBall());
     gamepadSelect.whenPressed(new HoodToggle());
+    rTrigger.whenPressed(new ChangeSpeed());
 
     
   }
